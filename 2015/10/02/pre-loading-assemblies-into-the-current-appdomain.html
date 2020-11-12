@@ -4,19 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Testa Software | The personal and professional home of Steve Testa</title>
+<title>Pre-Loading Assemblies Into the Current AppDomain | Testa Software</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Testa Software" />
+<meta property="og:title" content="Pre-Loading Assemblies Into the Current AppDomain" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The personal and professional home of Steve Testa" />
-<meta property="og:description" content="The personal and professional home of Steve Testa" />
-<link rel="canonical" href="https://testasoftware.github.io/" />
-<meta property="og:url" content="https://testasoftware.github.io/" />
+<meta name="description" content="I’m a big proponent of Inversion of Control and Dependency Injection. One of niceties that most DI containers provide is the ability to register bindings for multiple implementations for a single interface. In order to accomplish this the basic idea is that the container/framework will scan the currently loaded assemblies. If that’s not the case the other option is usually to provide an enumerable of the types we want to register. In which case, it’s our job to scan the assemblies for the types we care about." />
+<meta property="og:description" content="I’m a big proponent of Inversion of Control and Dependency Injection. One of niceties that most DI containers provide is the ability to register bindings for multiple implementations for a single interface. In order to accomplish this the basic idea is that the container/framework will scan the currently loaded assemblies. If that’s not the case the other option is usually to provide an enumerable of the types we want to register. In which case, it’s our job to scan the assemblies for the types we care about." />
+<link rel="canonical" href="https://testasoftware.github.io/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html" />
+<meta property="og:url" content="https://testasoftware.github.io/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html" />
 <meta property="og:site_name" content="Testa Software" />
-<meta property="og:image" content="https://testasoftware.github.io/images/logo.png" />
-<link rel="next" href="https://testasoftware.github.io/page2/" />
+<meta property="og:image" content="https://testasoftware.github.io/assets/images/blog/thumbnails/one-way.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://testasoftware.github.io/","@type":"WebSite","headline":"Testa Software","image":"https://testasoftware.github.io/images/logo.png","name":"Testa Software","description":"The personal and professional home of Steve Testa","@context":"https://schema.org"}</script>
+{"url":"https://testasoftware.github.io/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html","@type":"BlogPosting","headline":"Pre-Loading Assemblies Into the Current AppDomain","dateModified":"2015-10-02T00:00:00-05:00","datePublished":"2015-10-02T00:00:00-05:00","image":"https://testasoftware.github.io/assets/images/blog/thumbnails/one-way.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://testasoftware.github.io/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html"},"description":"I’m a big proponent of Inversion of Control and Dependency Injection. One of niceties that most DI containers provide is the ability to register bindings for multiple implementations for a single interface. In order to accomplish this the basic idea is that the container/framework will scan the currently loaded assemblies. If that’s not the case the other option is usually to provide an enumerable of the types we want to register. In which case, it’s our job to scan the assemblies for the types we care about.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://testasoftware.github.io/feed.xml" title="Testa Software" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -84,119 +85,39 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>This site is built with <a href="https://github.com/fastai/fastpages">fastpages</a>, An easy to use blogging platform with extra features for Jupyter Notebooks.</p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p><img src="/images/diagram.png" alt="" title="https://github.com/fastai/fastpages" /></p>
-
-<p><a href="https://github.com/fastai/fastpages">fastpages</a> automates the process of creating blog posts via GitHub Actions, so you don’t have to fuss with conversion scripts.  A full list of features can be found on <a href="https://github.com/fastai/fastpages">GitHub</a>.</p>
-
-<p>You can edit the <code class="language-plaintext highlighter-rouge">index.html</code> file to change this content.</p>
-
-<h1 id="posts">Posts</h1>
-
-
-
-  
-
-  <!-- Hide posts if front matter flag hide:true -->
-  
-  
-
-  <!-- Sort posts by rank, then date -->
-  
-  
-  
-
- 
-  
-
-   <!-- Assemble final sorted posts array -->
-  
-  <ul class="post-list"><li><h3>
-    <a class="post-link" href="/jupyter/2020/02/20/test.html">
-    Fastpages Notebook Blog Post
-    </a>
-</h3><p class="post-meta-description">A tutorial of fastpages for Jupyter notebooks.</p><p class="post-meta">Feb 20, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/markdown/2020/01/14/test-markdown-post.html">
-    An Example Markdown Post
-    </a>
-</h3><p class="post-meta-description">A minimal example of using markdown with fastpages.</p><p class="post-meta">Jan 14, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/07/27/web-application-primer-in-haskell-web-framework.html">
-    Web Application Primer in Haskell - Web Framework
-    </a>
-</h3><p class="post-meta">Jul 27, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/07/03/web-application-primer-in-haskell-programming-language.html">
-    Web Application Primer in Haskell - Haskell
-    </a>
-</h3><p class="post-meta">Jul 3, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/06/23/web-application-primer-in-haskell.html">
-    Web Application Primer in Haskell - Overview
-    </a>
-</h3><p class="post-meta">Jun 23, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2016/12/21/why-a-clean-git-history-matters.html">
-    Why a Clean Git History Matters
-    </a>
-</h3><p class="post-meta">Dec 21, 2016</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html">
-    Pre-Loading Assemblies Into the Current AppDomain
-    </a>
-</h3><p class="post-meta">Oct 2, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/09/01/thinking-functionally-with-linq.html">
-    Thinking Functionally with LINQ
-    </a>
-</h3><p class="post-meta">Sep 1, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/08/24/linq-helpers-for-IEnumerable.html">
-    Linq Helpers for IEnumerable
-    </a>
-</h3><p class="post-meta">Aug 24, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/05/06/adding-multi-level-menus-to-bootstrap-3-and-the-roots-theme-engine.html">
-    Adding Multi-Level Menus to Bootstrap 3 and the Roots Theme Engine
-    </a>
-</h3><p class="post-meta">May 6, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/15/unit-testing-with-telligent-evolution.html">
-    Unit Testing with Telligent Evolution
-    </a>
-</h3><p class="post-meta">Jan 15, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/07/changing-your-git-username-and-email.html">
-    Changing Your Git Username and Email
-    </a>
-</h3><p class="post-meta">Jan 7, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/04/knockout-binding-handler-for-google-maps.html">
-    Knockout Binding Handler for Google Maps
-    </a>
-</h3><p class="post-meta">Jan 4, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2013/10/08/simple-parallax-effect-using-knockout-and-jquery.html">
-    Simple Parallax Effect Using Knockout and jQuery
-    </a>
-</h3><p class="post-meta">Oct 8, 2013</p>
-</li><li><h3>
-    <a class="post-link" href="/2013/10/08/generating-csharp-classes-from-an-xml-file.html">
-    Generating C# Classes from an XML File
-    </a>
-</h3><p class="post-meta">Oct 8, 2013</p>
-</li></ul>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Pre-Loading Assemblies Into the Current AppDomain</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2015-10-02T00:00:00-05:00" itemprop="datePublished">
+        Oct 2, 2015
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
 
     
-      <div class="pager">
-        <ul class="pagination">
-          <li><div class="pager-edge">•</div></li>
-          <li><div class="current-page">1</div></li>
-          <li><a href="/page2/" class="next-page">2</a></li>
-        </ul>
-      </div></div>
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I’m a big proponent of Inversion of Control and Dependency Injection. One of niceties that most DI containers provide is the<!--more--> ability to register bindings for multiple implementations for a single interface. In order to accomplish this the basic idea is that the container/framework will scan the currently loaded assemblies. If that’s not the case the other option is usually to provide an enumerable of the types we want to register. In which case, it’s our job to scan the assemblies for the types we care about.</p>
+
+<p>It’s easy enough to make use of the current AppDomain to get a list of assemblies that are available. The problem is that the AppDomain loads assemblies on-demand when they are needed. This can present a problem for an IoC container that may need to register multiple implementations contained across different assemblies. Often an IoC container will be one of the first things instantiated in an application meaning not all of the types we need registered are in assemblies that have been loaded. This is particularly true when registering types by convention.</p>
+
+<p>One solution is to pre-load assemblies into the current domain. The code below will load all the assemblies located in your web project’s bin/ folder into the current AppDomain. It has the added advantages that it will not load any assemblies that already loaded and it will not lock the bin/ directory itself.</p>
+
+<script src="https://gist.github.com/stesta/0e0ea00de8c9edfca80e.js"></script>
+
+<p>After the assemblies have been loaded it is easy enough for our IoC container to register multiple bindings located across any assembly. The example below demonstrates how we’d register these binding using a framework like <a href="https://simpleinjector.org">Simple Injector</a>.</p>
+
+<script src="https://gist.github.com/stesta/fedf3aba270372e424a4.js"></script>
+
+
+  </div><a class="u-url" href="/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>

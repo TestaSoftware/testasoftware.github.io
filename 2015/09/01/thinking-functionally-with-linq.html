@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Thinking Functionally with LINQ | Testa Software</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Thinking Functionally with LINQ" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What would you do if I asked you to complete a task across a collection of objects without using a foreach loop? Or any looping construct at all for that matter? More importantly, why does it matter?" />
+<meta property="og:description" content="What would you do if I asked you to complete a task across a collection of objects without using a foreach loop? Or any looping construct at all for that matter? More importantly, why does it matter?" />
+<link rel="canonical" href="https://testasoftware.github.io/2015/09/01/thinking-functionally-with-linq.html" />
+<meta property="og:url" content="https://testasoftware.github.io/2015/09/01/thinking-functionally-with-linq.html" />
+<meta property="og:site_name" content="Testa Software" />
+<meta property="og:image" content="https://testasoftware.github.io/assets/images/blog/thumbnails/thinking.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-09-01T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://testasoftware.github.io/2015/09/01/thinking-functionally-with-linq.html","@type":"BlogPosting","headline":"Thinking Functionally with LINQ","dateModified":"2015-09-01T00:00:00-05:00","datePublished":"2015-09-01T00:00:00-05:00","image":"https://testasoftware.github.io/assets/images/blog/thumbnails/thinking.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://testasoftware.github.io/2015/09/01/thinking-functionally-with-linq.html"},"description":"What would you do if I asked you to complete a task across a collection of objects without using a foreach loop? Or any looping construct at all for that matter? More importantly, why does it matter?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://testasoftware.github.io/feed.xml" title="Testa Software" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Testa Software</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Thinking Functionally with LINQ</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2015-09-01T00:00:00-05:00" itemprop="datePublished">
+        Sep 1, 2015
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>What would you do if I asked you to complete a task across a collection of objects without using a foreach loop? Or any loop<!--more-->ing construct at all for that matter? More importantly, why does it matter?</p>
+
+<p>In my last post, <a href="/steve/blog/linq-helpers-for-IEnumerable/">Linq Helpers for IEnumerable</a>, I mentioned that LINQ to Objects was particularly appealing to me. Per MSDN (and they’re spot on), LINQ queries offer three main advantages over the more procedural foreach loops:</p>
+
+<ol>
+  <li>They are more concise and readable, especially when filtering multiple conditions.</li>
+  <li>They provide powerful filtering, ordering, and grouping capabilities with a minimum of application code.</li>
+  <li>They can be ported to other data sources with little or no modification</li>
+</ol>
+
+<p>For me LINQ means that I can take piece of procedural code, such as a complex series of foreach loops, and break them down into clear declarative statements. Foreach loops certainly have their place, but can often be replaced by functional statements that make code much more readable.</p>
+
+<h3 id="the-map-function">The Map Function</h3>
+
+<p>Before we dig in to a LINQ example, let’s go over a couple basic functions. In functional programming, one of the most common functions is the map function. Wikipedia has a nice concise definition.</p>
+
+<blockquote>
+  <p>map is the name of a higher-order function that applies a given function to each element of a list, returning a list of results. It is often called apply-to-all when considered in functional form.</p>
+</blockquote>
+
+<p>The effective impact of map is that it allows functional programmers to avoid looping constructs while working with lists and define the logic in a declarative way. This what a map looks like in Haskell:</p>
+
+<script src="https://gist.github.com/stesta/e9a861350cf773818f81.js"></script>
+
+<p>(Just a quick side note, this code will not actually manipulate elements in a list. In the functional world everything is immutable. So in this case we’re actually creating an entirely new list.)</p>
+
+<h3 id="the-filter-function">The Filter Function</h3>
+
+<p>The filter function is also another common function we can use against a list to pare it down to the items we care about. Once again Wikipedia provides us with a nice definition.</p>
+
+<blockquote>
+  <p>filter is a higher-order function that processes a data structure (typically a list) in some order to produce a new data structure containing exactly those elements of the original data structure for which a given predicate returns the boolean value true.</p>
+</blockquote>
+
+<script src="https://gist.github.com/stesta/15bbbcfd59fb9c861b90.js"></script>
+
+<h2 id="functional-linq">Functional LINQ</h2>
+
+<p>So how do these concepts transfer to LINQ? Here’s a real-world example. I came across this bit of code in my day job. It has been modified only slightly to make things a little less complex and the problem space a little more understandable. There’s nothing inherently wrong with the code. After all, it does in fact work. It was just written by someone who is used to thinking imperatively versus functionally. The biggest issue I have with the code is that it’s difficult to read and understand at a glance. As developers, we much more of our time reading code as opposed to writing code. That makes it extremely important that we write concise and understandable code.</p>
+
+<p>Here is the basic gist of what is happening in the code I came across. In our system, Users can follow Accounts (companies). By following an Account a User is essentially following a list of people who are employed by that Account. To summarize what’s going on, the code in question is attempting to get parse a list of paged search results. The list of results contains a list of Users who are following the searched account(s). For each person under those accounts some action is performed.</p>
+
+<script src="https://gist.github.com/stesta/3bfabceae3adc7462d3a.js"></script>
+
+<p>We can actually cut out almost all of the foreach logic by employing the functional concepts that we mentioned earlier. In our case, the foreach loops are really just querying some data. LINQ makes a lot of sense here. After all LINQ does stand for Language INtegrated Query. In order to begin to harness the true power of LINQ your view needs to be shifted. LINQ isn’t merely a SQL in code. It’s a query language for sure, but one that it both extremely expressive and functionally oriented. Especially when using the fluent syntax.</p>
+
+<p>The LINQ Select method corresponds almost directly to map. The LINQ Where clause corresponds closely to filter. In the example below, I also make use of the SelectMany clause. The basic idea behind a SelectMany is that it will project each element of a sequence to an IEnumerable&lt;T&gt; and flatten the resulting sequences into one sequence. For example, when the paged list of users is returned in the results instead of getting back an IEnumberable&lt;IEnumerable&lt;User&gt;&gt; (a list of lists) we just get back a single concatenated IEnumerable&lt;User&gt;</p>
+
+<script src="https://gist.github.com/stesta/3976b8fd869db359e284.js"></script>
+
+<p>Note that at the end of the code we are in fact using a ForEach mentioned in my last post. If you paid close attention you’ll remember that a ForEach that executes an Action is completely acceptable use case. In the case of Actions we’re not really selecting or projecting in a functional manner.</p>
+
+<p>It’s possible to get even terser with the code. We can get the logic down to six lines of code (or one giant one-liner depending on how you look at it). However, generally I like to stick to the previous code example style just to keep things as clear as possible.</p>
+
+<script src="https://gist.github.com/stesta/cb67f52a12f6af8a258e.js"></script>
+
+<p>That’s all for now! Happy coding!</p>
+
+  </div><a class="u-url" href="/2015/09/01/thinking-functionally-with-linq.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>The personal and professional home of Steve Testa</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/stesta" title="stesta"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/steven_testa" title="steven_testa"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

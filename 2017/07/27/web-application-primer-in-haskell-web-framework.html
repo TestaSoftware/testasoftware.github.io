@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Web Application Primer in Haskell - Web Framework | Testa Software</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Web Application Primer in Haskell - Web Framework" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="There are plenty of choices when it comes to Haskell web frameworks: yesod, spock, snap, happstack - just to name a few. The Haskell Wiki provides a list of descriptions and differences between some of the web frameworks out there." />
+<meta property="og:description" content="There are plenty of choices when it comes to Haskell web frameworks: yesod, spock, snap, happstack - just to name a few. The Haskell Wiki provides a list of descriptions and differences between some of the web frameworks out there." />
+<link rel="canonical" href="https://testasoftware.github.io/2017/07/27/web-application-primer-in-haskell-web-framework.html" />
+<meta property="og:url" content="https://testasoftware.github.io/2017/07/27/web-application-primer-in-haskell-web-framework.html" />
+<meta property="og:site_name" content="Testa Software" />
+<meta property="og:image" content="https://testasoftware.github.io/assets/images/blog/thumbnails/haskell.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-07-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://testasoftware.github.io/2017/07/27/web-application-primer-in-haskell-web-framework.html","@type":"BlogPosting","headline":"Web Application Primer in Haskell - Web Framework","dateModified":"2017-07-27T00:00:00-05:00","datePublished":"2017-07-27T00:00:00-05:00","image":"https://testasoftware.github.io/assets/images/blog/thumbnails/haskell.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://testasoftware.github.io/2017/07/27/web-application-primer-in-haskell-web-framework.html"},"description":"There are plenty of choices when it comes to Haskell web frameworks: yesod, spock, snap, happstack - just to name a few. The Haskell Wiki provides a list of descriptions and differences between some of the web frameworks out there.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://testasoftware.github.io/feed.xml" title="Testa Software" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Testa Software</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Web Application Primer in Haskell - Web Framework</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2017-07-27T00:00:00-05:00" itemprop="datePublished">
+        Jul 27, 2017
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>There are plenty of choices when it comes to Haskell web frameworks: yesod, spock, snap, happstack - just to name a few.<!--more--> The <a href="https://wiki.haskell.org/Web/Frameworks">Haskell Wiki</a> provides a list of descriptions and differences between some of the web frameworks out there.</p>
+
+<ul>
+  <li>Heroku
+    <ul>
+      <li>Docker
+        <ul>
+          <li>React + ES6</li>
+          <li><strong>Snap Framework + Heist + Websockets</strong></li>
+          <li><a href="/steve/blog/web-application-primer-in-haskell-programming-language">Haskell</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="web-framework-snap-framework">Web Framework: Snap Framework</h2>
+
+<p>I spent a little bit of time researching the various frameworks to determine if there was an outright favorite. Nope. It was a bit of a tough decision. I wanted a framework that was easy to get up and running quickly and would be extensible enough for future projects. Yesod seemed like a great option, but they lost me on the <a href="https://www.yesodweb.com/book/shakespearean-templates">Shakespearean Template Languages</a>. That particular flavor of templating just isn’t for me. Maybe I’ll change my mind in the future. I suggest you decide for yourself what works best for you and your situation.</p>
+
+<p>Ultimately, I landed on the <a href="http://snapframework.com/">Snap Framework</a>. For me, the Snap felt lightweight enough to get up and running quickly without too much ceremony. Getting an HTTP server up and running along with some simple routing is a breeze. Additionally, Snap’s templating system (Heist) felt very natural to me.</p>
+
+<p>As far as extensibility goes, they have a concept of <a href="http://snapframework.com/snaplets">Snaplets</a>. Snaplets allow you to build self-contained bits of additional functionality. When it comes time to add in things like sessions and authentication you can do so easily via built-in Snaplets (or write your own). Third-party Snaplets seemed readily available and easy to find.</p>
+
+<p>On to the code!</p>
+
+<h3 id="setting-up-a-basic-http-server">Setting up a Basic HTTP Server</h3>
+
+<p>For the basic Snap site setup I have chosen to break things out into three files in order to have a clear separation of concerns. To be fair I saw this convention somewhere… liked it… and subsequently ripped it off! :)</p>
+
+<p>The three files summarize as follows:</p>
+
+<p><strong>Main.hs</strong></p>
+
+<p>The entry point for our application is very simple. All we’re doing here is serving up our website via the <code class="language-plaintext highlighter-rouge">serveSnaplet</code> function which takes in a server configuration and a snaplet initializer. For the server configuration we’re just using the <code class="language-plaintext highlighter-rouge">defaultConfig</code>. The snaplet initializer (<code class="language-plaintext highlighter-rouge">siteInit</code>) is defined a little further below.</p>
+
+<script src="https://gist.github.com/stesta/a977a111bb3f19fd905d79d34cefa5d6.js"></script>
+
+<p><strong>Application.hs</strong></p>
+
+<p>This file defines a data structure we can use to hold the state for our application. The App data structure will contain the state of all the snaplets we intend to user and in-turn wrap them all up as a Snaplet. Note that I don’t understand the technical reasons, but the field names all need to begin with an underscore. Following that up with the <code class="language-plaintext highlighter-rouge">makeLenses</code> helper lets us call those field names <em>without</em> an underscore throughout the rest of our application.</p>
+
+<script src="https://gist.github.com/stesta/d6b663f1250ed43d83ff5586147029df.js"></script>
+
+<p>The Application.hs is also where we’ve instanced out Heist and added a convenience type synonym called <code class="language-plaintext highlighter-rouge">AppHandler</code>.</p>
+
+<p><strong>Site.hs</strong></p>
+
+<p>Finally, we define a Site.hs to house our Snaplet initializer to initialize our site. When making this top level Snaplet the first the we end up doing is to initialize all of the nested Snaplets our site will use. In this case we’re only initializing the Heist Snaplet for templating. Then there’s some basic routing. Finally, a return of the resulting <code class="language-plaintext highlighter-rouge">App</code> state data structure.</p>
+
+<script src="https://gist.github.com/stesta/788a47d694447c01b1e368f78aa8309a.js"></script>
+
+<h3 id="setting-up-websockets">Setting up Websockets</h3>
+
+<p>I could have used REST here. It is easy to create an REST API as a Snaplet. For the purposes for the Game of Haskell, however, I needed (wanted) something a little more real-time.</p>
+
+<p>Websockets are the no-brainer client-server communication protocol for the web. Packages are available to add websocket support in for Haskell as well as a corresponding Snaplet to plug in to our application.</p>
+
+<p>If you review our site initializer you will find the <code class="language-plaintext highlighter-rouge">gameoflife</code> route. It points to an <code class="language-plaintext highlighter-rouge">AppHandler</code>. The handler runs a web socket <code class="language-plaintext highlighter-rouge">ServerApp</code>. The server app continually listens for new messages, expecting an integer to be sent across the wire, and returns the corresponding game state. The game state itself is packaged up as JSON using the <a href="#">aeson</a> Haskell library.</p>
+
+<script src="https://gist.github.com/stesta/b38b9fd526a1142298a0f494a0475906.js"></script>
+
+<h3 id="templating-via-heist">Templating via Heist</h3>
+
+<p>For webpage and HTML templating <a href="http://snapframework.com/docs/tutorials/heist">Heist</a> was a natural choice because it was developed by the same folks who wrote Snap and you get it bundled for free. Heist as a template engine was a selling point for me regarding Snap. The <code class="language-plaintext highlighter-rouge">bind</code> and <code class="language-plaintext highlighter-rouge">apply-content</code> features make it possible to build a series of nested templates. When you couple all of that with <code class="language-plaintext highlighter-rouge">splices</code>, which basically let you call Haskell code from your templates, you have a really powerful system.</p>
+
+
+  </div><a class="u-url" href="/2017/07/27/web-application-primer-in-haskell-web-framework.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>The personal and professional home of Steve Testa</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/stesta" title="stesta"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/steven_testa" title="steven_testa"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

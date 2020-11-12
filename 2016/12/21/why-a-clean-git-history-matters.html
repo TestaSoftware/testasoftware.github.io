@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Why a Clean Git History Matters | Testa Software</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Why a Clean Git History Matters" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ugly git histories annoy the hell out of me!!! … and they should annoy the hell out of you too!" />
+<meta property="og:description" content="Ugly git histories annoy the hell out of me!!! … and they should annoy the hell out of you too!" />
+<link rel="canonical" href="https://testasoftware.github.io/2016/12/21/why-a-clean-git-history-matters.html" />
+<meta property="og:url" content="https://testasoftware.github.io/2016/12/21/why-a-clean-git-history-matters.html" />
+<meta property="og:site_name" content="Testa Software" />
+<meta property="og:image" content="https://testasoftware.github.io/assets/images/blog/thumbnails/git.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-21T00:00:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://testasoftware.github.io/2016/12/21/why-a-clean-git-history-matters.html","@type":"BlogPosting","headline":"Why a Clean Git History Matters","dateModified":"2016-12-21T00:00:00-06:00","datePublished":"2016-12-21T00:00:00-06:00","image":"https://testasoftware.github.io/assets/images/blog/thumbnails/git.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://testasoftware.github.io/2016/12/21/why-a-clean-git-history-matters.html"},"description":"Ugly git histories annoy the hell out of me!!! … and they should annoy the hell out of you too!","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://testasoftware.github.io/feed.xml" title="Testa Software" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Testa Software</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Why a Clean Git History Matters</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2016-12-21T00:00:00-06:00" itemprop="datePublished">
+        Dec 21, 2016
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Ugly git histories annoy the hell out of me!!!<br /><br />
+… and they should annoy the hell out of you too!</p>
+
+<!--more-->
+
+<p>I can’t stand looking at the <code class="language-plaintext highlighter-rouge">git log</code> (the history) for a project that contains frivolous merge commits causing complex branching paths which are impossible to follow. I completely understand that the history of the code base has no bearing on how the current iteration of the code functions, but there are still reasons a clean history matters.</p>
+
+<h2 id="so-why-do-i-care">So why do I care?</h2>
+
+<ol>
+  <li>
+    <p><strong>Having a Clue:</strong><br />
+ For starters, a clean, properly rebased git history is a demonstration that you have some semblance of an idea of what you are doing. The corollary being that you have no clue what you are doing. Git is an amazing tool for source control. It provides many opportunities for efficient source control management and workflow. By the same token it also provides many opportunities to screw things up. Having a clean and readable Git history is an indicator that the folks working with the code base are familiar with the tooling and haven’t done anything detrimental to the project. It’s an indicator that everyone on the team is familiar with the workflows and processes that have been put in place.</p>
+  </li>
+  <li><strong>Change Logs:</strong> <br />
+ Another reason the history matters are for change logs. The Git history can be leveraged to create accurate and detailed logs of any and all changes that are made. The logs are an often overlooked and valuable artifact to many different people.
+    <ul>
+      <li>it gives have insight into the code we’ve written</li>
+      <li>provide better work estimates in the future</li>
+      <li>justify what gets billed to a client</li>
+      <li>gives the end user insight into new features that hopefully make their lives easier</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Roll-Back Plan:</strong><br />
+  A clean history also allows for a better roll-back plan. Git provides some remarkable abilities to roll back and recover old iterations of the code. A clean history helps us, the developer, to leverage those features of Git during those times when critical failures need to be addressed.</p>
+  </li>
+  <li><strong>Code Recovery:</strong><br />
+  History allows provides a window into older code that we may have written and since cut out of the code base. Too often we fall into the trap of keeping unecessary code around. Never be afraid to scrap code! Move on. Git provides affords us a safety net. If there’s ever a bit of code that needs to be brought back from the dead, it’s possible.</li>
+</ol>
+
+<h2 id="visualizing-git-history-from-the-command-line">Visualizing Git History from the Command Line</h2>
+
+<p>There are plenty of graphical tools out there that help visualize Git history, but did you know you can do that from the command line? Personally, I enjoy the command line. Git commands can be cumbersome at times, but it really helps me to be clear and certain about every action I am performing against the code base. That being the case it’s nice not to have to leave the command line when I need to review the Git logs. The following Git command will display a nice command line graph for us.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log --graph --oneline --abbrev --color --decorate 
+</code></pre></div></div>
+
+<p>One additional little tip is that I like to set up that command as an alias to <code class="language-plaintext highlighter-rouge">gg</code> in the ~/.bashrc file. This let’s us just type <code class="language-plaintext highlighter-rouge">gg</code> (for git graph) into the command line instead of having to type out that long statement every single time.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>alias gg=git log --graph --oneline --abbrev --color --decorate 
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">gg</code> command yields the following result</p>
+
+<p><img width="100%" src="/assets/images/blog/git-history/clean-history.png" /></p>
+
+<h2 id="so-what-does-a-clean-git-history-actually-look-like">So What Does a Clean Git History Actually Look Like?</h2>
+
+<p>Full disclosure: There is no consensus here.</p>
+
+<p>A clean history can mean different things depending on the workflow being used on a given project. Generally, a clean git history means that the branching paths are clear and understandable. I prefer a git history that results in pull requests ending up as merge commits and any other feature commits cleanly rebased onto a single feature branch. This results in a git history similar to the one shown in the image above. In that image it is very clear which commits are a part of the pull requests. I tend to stick to the following rules:</p>
+
+<ol>
+  <li>Do your work on a local copy of your feature branch.<br />
+This allows you, as a developer, to interactively rebase commits. It’s the opportunity to squash dev commits and reword commits to be more descriptive.</li>
+  <li>Prefer rebasing as opposed to merge committing.<br />
+This helps keep a singular and clear branching path for individual features.</li>
+  <li>Be descriptive with your commit messages.<br />
+Descriptive commit messages let us leverage Git for change logs and code recovery. If you are descriptive in your commit messages you can easily pipe out your log commands (including <code class="language-plaintext highlighter-rouge">gg</code>) to <code class="language-plaintext highlighter-rouge">grep</code> to find anything you need.</li>
+  <li>Tag commits properly.<br />
+Many Git workflows involve tagging. Make sure you follow your team’s standards. In my day-to-day we use Jira to track our work items. Jira’s integration with Git provides the ability to use tags in our commit messages to automate workflow and tie Git commits to our work items.</li>
+</ol>
+
+  </div><a class="u-url" href="/2016/12/21/why-a-clean-git-history-matters.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>The personal and professional home of Steve Testa</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/stesta" title="stesta"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/steven_testa" title="steven_testa"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

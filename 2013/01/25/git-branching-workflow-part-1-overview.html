@@ -4,19 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Testa Software | The personal and professional home of Steve Testa</title>
+<title>Git Branching Workflow - Part 1: Overview | Testa Software</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Testa Software" />
+<meta property="og:title" content="Git Branching Workflow - Part 1: Overview" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The personal and professional home of Steve Testa" />
-<meta property="og:description" content="The personal and professional home of Steve Testa" />
-<link rel="canonical" href="https://testasoftware.github.io/" />
-<meta property="og:url" content="https://testasoftware.github.io/" />
+<meta name="description" content="In this post I’m going to explain the current development model for my team. We use Git very heavily. I will go over our branching workflow with some explanation of the basics, but if you need to learn some more about Git try the book Git Pro. It is available as a free ebook and covers everything you’ll need to know." />
+<meta property="og:description" content="In this post I’m going to explain the current development model for my team. We use Git very heavily. I will go over our branching workflow with some explanation of the basics, but if you need to learn some more about Git try the book Git Pro. It is available as a free ebook and covers everything you’ll need to know." />
+<link rel="canonical" href="https://testasoftware.github.io/2013/01/25/git-branching-workflow-part-1-overview.html" />
+<meta property="og:url" content="https://testasoftware.github.io/2013/01/25/git-branching-workflow-part-1-overview.html" />
 <meta property="og:site_name" content="Testa Software" />
-<meta property="og:image" content="https://testasoftware.github.io/images/logo.png" />
-<link rel="next" href="https://testasoftware.github.io/page2/" />
+<meta property="og:image" content="https://testasoftware.github.io/assets/images/blog/thumbnails/tree-branch.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-01-25T00:00:00-06:00" />
 <script type="application/ld+json">
-{"url":"https://testasoftware.github.io/","@type":"WebSite","headline":"Testa Software","image":"https://testasoftware.github.io/images/logo.png","name":"Testa Software","description":"The personal and professional home of Steve Testa","@context":"https://schema.org"}</script>
+{"url":"https://testasoftware.github.io/2013/01/25/git-branching-workflow-part-1-overview.html","@type":"BlogPosting","headline":"Git Branching Workflow - Part 1: Overview","dateModified":"2013-01-25T00:00:00-06:00","datePublished":"2013-01-25T00:00:00-06:00","image":"https://testasoftware.github.io/assets/images/blog/thumbnails/tree-branch.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://testasoftware.github.io/2013/01/25/git-branching-workflow-part-1-overview.html"},"description":"In this post I’m going to explain the current development model for my team. We use Git very heavily. I will go over our branching workflow with some explanation of the basics, but if you need to learn some more about Git try the book Git Pro. It is available as a free ebook and covers everything you’ll need to know.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://testasoftware.github.io/feed.xml" title="Testa Software" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -84,119 +85,65 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>This site is built with <a href="https://github.com/fastai/fastpages">fastpages</a>, An easy to use blogging platform with extra features for Jupyter Notebooks.</p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p><img src="/images/diagram.png" alt="" title="https://github.com/fastai/fastpages" /></p>
-
-<p><a href="https://github.com/fastai/fastpages">fastpages</a> automates the process of creating blog posts via GitHub Actions, so you don’t have to fuss with conversion scripts.  A full list of features can be found on <a href="https://github.com/fastai/fastpages">GitHub</a>.</p>
-
-<p>You can edit the <code class="language-plaintext highlighter-rouge">index.html</code> file to change this content.</p>
-
-<h1 id="posts">Posts</h1>
-
-
-
-  
-
-  <!-- Hide posts if front matter flag hide:true -->
-  
-  
-
-  <!-- Sort posts by rank, then date -->
-  
-  
-  
-
- 
-  
-
-   <!-- Assemble final sorted posts array -->
-  
-  <ul class="post-list"><li><h3>
-    <a class="post-link" href="/jupyter/2020/02/20/test.html">
-    Fastpages Notebook Blog Post
-    </a>
-</h3><p class="post-meta-description">A tutorial of fastpages for Jupyter notebooks.</p><p class="post-meta">Feb 20, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/markdown/2020/01/14/test-markdown-post.html">
-    An Example Markdown Post
-    </a>
-</h3><p class="post-meta-description">A minimal example of using markdown with fastpages.</p><p class="post-meta">Jan 14, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/07/27/web-application-primer-in-haskell-web-framework.html">
-    Web Application Primer in Haskell - Web Framework
-    </a>
-</h3><p class="post-meta">Jul 27, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/07/03/web-application-primer-in-haskell-programming-language.html">
-    Web Application Primer in Haskell - Haskell
-    </a>
-</h3><p class="post-meta">Jul 3, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2017/06/23/web-application-primer-in-haskell.html">
-    Web Application Primer in Haskell - Overview
-    </a>
-</h3><p class="post-meta">Jun 23, 2017</p>
-</li><li><h3>
-    <a class="post-link" href="/2016/12/21/why-a-clean-git-history-matters.html">
-    Why a Clean Git History Matters
-    </a>
-</h3><p class="post-meta">Dec 21, 2016</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/10/02/pre-loading-assemblies-into-the-current-appdomain.html">
-    Pre-Loading Assemblies Into the Current AppDomain
-    </a>
-</h3><p class="post-meta">Oct 2, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/09/01/thinking-functionally-with-linq.html">
-    Thinking Functionally with LINQ
-    </a>
-</h3><p class="post-meta">Sep 1, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2015/08/24/linq-helpers-for-IEnumerable.html">
-    Linq Helpers for IEnumerable
-    </a>
-</h3><p class="post-meta">Aug 24, 2015</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/05/06/adding-multi-level-menus-to-bootstrap-3-and-the-roots-theme-engine.html">
-    Adding Multi-Level Menus to Bootstrap 3 and the Roots Theme Engine
-    </a>
-</h3><p class="post-meta">May 6, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/15/unit-testing-with-telligent-evolution.html">
-    Unit Testing with Telligent Evolution
-    </a>
-</h3><p class="post-meta">Jan 15, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/07/changing-your-git-username-and-email.html">
-    Changing Your Git Username and Email
-    </a>
-</h3><p class="post-meta">Jan 7, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2014/01/04/knockout-binding-handler-for-google-maps.html">
-    Knockout Binding Handler for Google Maps
-    </a>
-</h3><p class="post-meta">Jan 4, 2014</p>
-</li><li><h3>
-    <a class="post-link" href="/2013/10/08/simple-parallax-effect-using-knockout-and-jquery.html">
-    Simple Parallax Effect Using Knockout and jQuery
-    </a>
-</h3><p class="post-meta">Oct 8, 2013</p>
-</li><li><h3>
-    <a class="post-link" href="/2013/10/08/generating-csharp-classes-from-an-xml-file.html">
-    Generating C# Classes from an XML File
-    </a>
-</h3><p class="post-meta">Oct 8, 2013</p>
-</li></ul>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Git Branching Workflow - Part 1: Overview</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2013-01-25T00:00:00-06:00" itemprop="datePublished">
+        Jan 25, 2013
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
 
     
-      <div class="pager">
-        <ul class="pagination">
-          <li><div class="pager-edge">•</div></li>
-          <li><div class="current-page">1</div></li>
-          <li><a href="/page2/" class="next-page">2</a></li>
-        </ul>
-      </div></div>
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In this post I’m going to explain the current development model for my team. We use <a href="http://www.git-scm.com/">Git</a> very heavily. I will go over our bra<!--more-->nching 
+workflow with some explanation of the basics, but if you need to learn some more about Git try the book <a href="http://www.git-scm.com/book">Git Pro</a>. It is available as 
+a free ebook and covers everything you’ll need to know.</p>
+
+<p><img src="http://testasoftware.com/assets/images/blog/git-workflow/branching-strategy.png" alt="" /></p>
+
+<h2 id="from-feature-to-production">From Feature to Production</h2>
+
+<h3 id="the-main-branches">The Main Branches</h3>
+<p>There are three main branches that we use in our central repository. We’ll call that repo ‘origin’. Our three main branches are 
+development, staging and production.</p>
+
+<p><strong>The development branch</strong> is used as one point to continually share code across the team. As a general rule code pushed out development 
+branch should be code that will actually build and passes our unit tests. If we need to share more experimental code we will pull from 
+each other. The development branch commits are then occasionally merged into the staging branch when we feel the code is a candidate for 
+release.</p>
+
+<p><strong>The staging branch</strong> is monitored for changes by our build server. Our build server performs multiple functions including running 
+our test suite and deploying to the staging environment. Once our tests are green and code has been deployed to the staging 
+environment we are able to perform our user acceptance testing. In addition to commits from the development development branch, 
+bugfixes can also be merged directly to the staging branch. When a staging release is ready changes on the staging branch are then 
+merged into production.</p>
+
+<p><strong>The production branch</strong> (master) is the branch that reflects what is currently deployed to production. The production branch is 
+also monitored for changes by our build server. Assuming our test suite continues to pass, the latest changes are deployed. In the 
+event that there is a severe bug that need to be fixed immediately (a hotfix), a temporary hotfix branch can be created off the 
+production branch. Changes in the hotfix branch can then be merged directly into production and then also merged directly into the 
+development branch so changes are shared and propagated back through the workflow.</p>
+
+<p>Note that while these branches comprise a majority of our development processes Git, however, is still a distributed version 
+control system (DVCS). Having a central repository that we use for development and deployment in no way prevents us from pull 
+changes directly from team members and other places.</p>
+
+<h3 id="posts-in-this-series">Posts in This Series</h3>
+<p>Part 1: Overview</p>
+
+<p><a href="/steve/blog/git-branching-workflow-part-2-feature-branches">Part 2: Feature Branches</a></p>
+
+
+  </div><a class="u-url" href="/2013/01/25/git-branching-workflow-part-1-overview.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
