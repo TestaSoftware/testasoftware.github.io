@@ -19,7 +19,7 @@ const Header = () => (
               </p>
               <div className="buttons">
                 <Link to="/about"><button type="button" className="btn btn-rounded bg-gradient-primary mt-4">About Me</button></Link>
-                <Link to="/contact"><button type="button" className="btn btn-rounded btn-outline-secondary mt-4 ms-2">Contact Me</button></Link>
+                {/* <Link to="/contact"><button type="button" className="btn btn-rounded btn-outline-secondary mt-4 ms-2">Contact Me</button></Link> */}
               </div>
             </div>
           </div>

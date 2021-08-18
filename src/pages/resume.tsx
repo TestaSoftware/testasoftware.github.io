@@ -24,8 +24,8 @@ const Basics = ({resume}) => (
         <div className="col-6 text-lg mb-0">
           {resume.basics.location.city + ", " + resume.basics.location.region} <br />
           {resume.basics.email} <br />
-          {resume.basics.phone} <br />
           {resume.basics.website} <br />
+          {resume.basics.phone} <br />
         </div>
         <div className="col-6 text-lg mb-0">
           {resume.basics.profiles.map(profile => (
@@ -120,10 +120,6 @@ const ResumePage = ({ data }) => {
                   {resume.work.map(work => (
                     <Experience work={work} />
                   ))}
-                  <h3 className="text-gradient text-primary">Certifications</h3>
-                  {resume.certifications.map(cert => (
-                    <Certification cert={cert} />
-                  ))}
                 </div>
                 <div className="col-4">
                   <h3 className="text-gradient text-primary">Skills</h3>
@@ -134,6 +130,23 @@ const ResumePage = ({ data }) => {
                   {resume.volunteer.map(volunteer => (
                     <Volunteer volunteer={volunteer} />
                   ))}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <h3 className="text-gradient text-primary">Certifications</h3>
+                  <div className="row">
+                    <div className="col">
+                    {resume.certifications.slice(0,5).map(cert => (
+                      <Certification cert={cert} />
+                    ))}
+                    </div>
+                    <div className="col">
+                    {resume.certifications.slice(5,9).map(cert => (
+                      <Certification cert={cert} />
+                    ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

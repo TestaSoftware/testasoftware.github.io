@@ -30,13 +30,13 @@ const Footer = ({ }) => (
           </p>
         </div>
         <div className="col-lg-3 text-end">
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
+          <a href="https://github.com/stesta" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-github text-lg"></span>
           </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
+          <a href="https://twitter.com/steven_testa" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-twitter text-lg"></span>
           </a>
-          <a href="javascript:;" target="_blank" className="text-secondary me-xl-4 me-4">
+          <a href="https://www.linkedin.com/in/stevendtesta/" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-linkedin text-lg"></span>
           </a>
         </div>
