@@ -8,12 +8,14 @@ Recursion can sometimes hurt the brain. Here is a clear and concise way to do re
 Let's sta<!--more-->rt with a common scenario, recursing through a tree. Imagine that we've got a tree of "Nodes". For 
 our purposes a Node is just a simple class that has an Id and a way to identify its parent Node (via ParentId in this case).
 
-    // pseudo code for an example tree node
-    class Node 
-    {
-      int Id;
-       int ParentId;
-    }
+```csharp
+// pseudo code for an example tree node
+class Node 
+{
+  int Id;
+    int ParentId;
+}
+```
 
 Simple enough so far...  
 
@@ -27,7 +29,18 @@ you can never quite seem to remember how to do it correctly. The reason for that
 lend itself to readability. If we can read something clearly we can understand it more easily. Using lambda expressions 
 and linq help us get that clarity. Take the example below...
 
-<script src="https://gist.github.com/stesta/c512058a138b8d9ac1d6.js"></script>
+```csharp
+// recursion lambda
+Action<node> traverse = null;
+traverse = (node) =>
+{
+  // do something with the node here...
+
+  // continue traversing
+  tree.Where(child => child.ParentId == node.Id)
+      .ForEach(traverse);
+};
+```
 
 The code above is clear and concise. It makes it obvious as to what is going on: get all of the children for a particular 
 node in a tree; for each of the children run the same function to get their children as well; do that over and over until
@@ -36,4 +49,7 @@ to worry about a stopping condition, because our foreach loop serves in its plac
 
 Now that we've defined our lambda all that's left to do is run our traversal against whatever root node we would like!
 
-<script src="https://gist.github.com/stesta/deaa92e2a0f2bc3daef1.js"></script>
+```csharp
+// run it
+traverse(tree.rootNode);
+```

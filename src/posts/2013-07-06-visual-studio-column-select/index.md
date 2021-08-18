@@ -6,7 +6,9 @@ date: 2013-07-06
 ---
 If you're not familiar with column select you're missing out on a ton of multi-line editing goodness. Just hold down the alt <!--more-->key while you're selecting items with your mouse and you'll see what I mean.
 
-    alt+left mouse
+```
+alt+left mouse
+```
 
 You can edit columns of information at once with out having to retype or paste in information over and over. Column select is a little difficult to explain so I created a quick screen capture to show off the awesomeness of this feature.
 

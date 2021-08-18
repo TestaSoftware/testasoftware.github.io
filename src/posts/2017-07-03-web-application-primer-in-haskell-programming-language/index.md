@@ -57,7 +57,7 @@ The last thing I did was to create one final function that again uses a State Mo
 
 If you've pulled down my [source code][gameOfHaskell-FullSource] you can test all this by loading Core.hs into the ghci 
 
-```
+```bash
 > ghci
 GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
 
@@ -66,7 +66,7 @@ Prelude> :l src/GameOfHaskell/Core.hs
 
 Then use `evalState` and the List Index (subscript) operator `!!` to access individual generations of a board. The example below loads in and accesses generations from the "acorn" pattern: 
 
-```
+```haskell
 -- load in a game state
 *GameOfHaskell.Core> let game = evalState generations [(0,2),(1,0),(1,2),(3,1),(4,2),(5,2),(6,2)]  
 

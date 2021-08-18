@@ -4,11 +4,11 @@ slug: 2013-01-25-git-branching-workflow-part-1-overview
 image: /assets/images/blog/thumbnails/tree-branch.jpg
 date: 2013-01-25
 ---
-In this post I'm going to explain the current development model for my team. We use [Git][1] very heavily. I will go over our bra<!--more-->nching 
+In this post I'm going to explain the current development model for my team. We use [Git][1] very heavily. I will go over our branching 
 workflow with some explanation of the basics, but if you need to learn some more about Git try the book [Git Pro][2]. It is available as 
-a free ebook and covers everything you'll need to know.
+a free ebook and covers everything you'll need to know.<!--more-->
 
-![][branching-strategy] 
+![](./branching-strategy.png) 
 
 From Feature to Production
 -------------------------- 
@@ -41,9 +41,7 @@ changes directly from team members and other places.
 ### Posts in This Series
 Part 1: Overview
 
-[Part 2: Feature Branches](/steve/blog/git-branching-workflow-part-2-feature-branches)  
+[Part 2: Feature Branches](/blog/2013-02-23-git-branching-workflow-part-2-feature-branches)  
 
 [1]: http://www.git-scm.com/
 [2]: http://www.git-scm.com/book
-
-[branching-strategy]: http://testasoftware.com/assets/images/blog/git-workflow/branching-strategy.png

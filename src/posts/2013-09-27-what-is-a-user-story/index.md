@@ -28,10 +28,12 @@ have active tasks to complete.
 
 The story on the card can be written in many formats. One such format is a user role format. It's not the only format, but it is my 
 preferred method.
-    
-    As a "type of user of the system"
-    I want "to be able to perform this action"
-    Because "of this need or business rule"
+
+```  
+As a "type of user of the system"
+I want "to be able to perform this action"
+Because "of this need or business rule"
+```
 
 #### Conversations
 

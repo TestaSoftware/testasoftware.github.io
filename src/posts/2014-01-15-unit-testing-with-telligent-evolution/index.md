@@ -1,12 +1,12 @@
 ---
 title: Unit Testing with Telligent Evolution
-slug: 2014-01-07-changing-your-git-username-and-email
+slug: 2014-01-15-unit-testing-with-telligent-evolution
 image: /assets/images/blog/thumbnails/keys.jpg
 date: 2014-01-15
 ---
 Kaboom! *The service locator has not been initialized*  <!--more--> 
 
-<img width="456" height="58" src="{{ "/assets/images/blog/Telligent/service-locator-error.png" | prepend: site.url }}" />  
+![](/assets/images/blog/Telligent/service-locator-error.png)
 
 If you use the Telligent Evolution platform and you've tried to set up unit testing then you've probably seen this message. 
 So what's the problem? Well the service locator really isn't anything more than a Ninject kernel. Since our unit tests are 

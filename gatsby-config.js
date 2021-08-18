@@ -15,6 +15,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `post-images`,
+        path: `${__dirname}/src/posts`,
+      },
+    },
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -26,7 +33,21 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        excerpt_separator: `<!--more-->`
+        excerpt_separator: `<!--more-->`,
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true,
+              noInlineHighlight: false
+            }
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+            }
+          }
+        ]
       },
     },
     {
@@ -49,6 +70,12 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/logo/testasoftware-lambda-logo.svg`, // This path is relative to the root of the site.
       },
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+          shortname: `testasoftware-steve`
+      }
     },
     `gatsby-plugin-gatsby-cloud`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
