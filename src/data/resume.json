@@ -1,0 +1,221 @@
+{
+    "basics": {
+      "name": "Steve Testa",
+      "label": "Software Developer",
+      "picture": "https://secure.gravatar.com/avatar/fa0158d5d8c2025ccd4d55cefa30d387?s=250",
+      "email": "steve@testasoftware.com",
+      "phone": "(440) 305-0073",
+      "website": "https://testasoftware.com",
+      "location": {
+        "city": "Cleveland",
+        "countryCode": "US",
+        "region": "Ohio"
+      },
+      "profiles": [
+        {
+          "network": "LinkedIn",
+          "username": "stevendtesta",
+          "url": "https://www.linkedin.com/in/stevendtesta/"
+        },
+        {
+          "network": "Twitter",
+          "username": "steven_testa",
+          "url": "https://twitter.com/steven_testa"
+        },
+        {
+          "network": "GitHub",
+          "username": "stesta",
+          "url": "https://github.com/stesta"
+        },
+        {
+          "network": "Kaggle",
+          "username": "steventesta",
+          "url": "https://kaggle.com/steventesta"
+        }
+      ]
+    },
+    "work": [
+      {
+        "company": "Hyland Software",
+        "position": "Applications Developer",
+        "website": "https://www.hyland.com",
+        "startDate": "2010-01-04",
+        "endDate": "",
+        "summary": "My role on this team is to develop end-to-end solutions for the business. Solutions are primarily built upon our social enterprise solutions. We develop not only the company intranet but also the extranet. This allows Hyland employees, resellers and customers to interact and communicate in new ways.",
+        "highlights": [
+          "Created a new company intranet and extranet that allowed for increased communication and shared insights between our employees, reseller channels and customer base.",
+          "Built many end-to-end custom solutions on top of our intranet and extranet to facilitate business processes.",
+          "Aided in implementing and adhering to an agile software methodology",
+          "Implemented and trained my team on distributed version control using Git and modern build and deployment practices that facilitated a continuous deployment strategy."
+        ]
+      },
+      {
+        "company": "Testa Software",
+        "position": "Owner / Developer",
+        "website": "https://testasaoftware.com",
+        "startDate": "2009-06-01",
+        "endDate": "",
+        "summary": "I began Testa Software in the summer of 2009 as a one-man consulting shop. Contact me if you have any interest in contracting my services for any custom development.",
+        "highlights": [ 
+        ]
+      },
+      {
+        "company": "Micro-Office Systems",
+        "position": "Programmer / Technical Support Specialist",
+        "website": "https://www.micro-officesystems.com",
+        "startDate": "2005-07-01",
+        "endDate": "2009-12-01",
+        "summary": "Micro-Office Systems is a custom solutions business with a focus entirely on the healthcare vertical. While working for the company, I had the opportunity to develop and support solution end to end.",
+        "highlights": [
+          "Software development using C#, .Net (1.1, 2.0, 3.5), perl, c++ and others",
+          "Developed a wide range of products not limited to HL7 integrations, perl communications utilities, custom Scantron Optical Mark Reader utilities, and ANSI 835/837 billing utilities.",
+          "Software development for multiple operating systems including several versions of Windows, SCO Unix, and Linux",
+          "Other responsibilities included: primary support contact, documentation composition, and internal product testing"
+        ]
+      },
+      {
+        "company": "Sky Internet Solutions",
+        "position": "Web Developer",
+        "website": "",
+        "startDate": "2005-01-01",
+        "endDate": "2005-06-01",
+        "summary": "I worked in this role while in school. I was employed by my former professor. My time was primarily spent developing websites. After school, I continued to occasionally take on freelance work for the company.",
+        "highlights": [
+          "Web page design using HTML, XHTML and CSS",
+          "Adhered to HTML and XHTML Strict W3C standards.",
+          "Development of dynamic content web pages using ASP.Net and C#",
+          "Use of Microsoft Visual Studio development environments"
+        ]
+      }
+    ],
+    "volunteer": [
+      {
+        "organization": "Cleveland Dev Craft",
+        "position": "Organizer",
+        "website": "https://www.meetup.com/cledevcraft/",
+        "startDate": "2014-11-01",
+        "endDate": "",
+        "summary": "A local Cleveland .NET Enterprise User Group.",
+        "highlights": [
+          ".NET Enterprise Development",
+          "Ineta Member"
+        ]
+      }
+    ],
+    "certifications": [
+      {
+        "name": "Deep Learning Specialization",
+        "authority": "Coursera",
+        "license": "BTHYW42ACPN7",
+        "startDate": "2019-06-11",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/BTHYW42ACPN7"
+      },
+      {
+        "name": "Sequence Models",
+        "authority": "Coursera",
+        "license": "GLJ7JJVVULKY",
+        "startDate": "2019-06-11",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/GLJ7JJVVULKY"
+      },
+      {
+        "name": "Convolutional Neural Networks",
+        "authority": "Coursera",
+        "license": "VE6R3H5FKQJ2",
+        "startDate": "2019-01-21",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/VE6R3H5FKQJ2"
+      },
+      {
+        "name": "Structuring Machine Learning Projects",
+        "authority": "Coursera",
+        "license": "8FAZHACG8GAR",
+        "startDate": "2018-11-12",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/8FAZHACG8GAR"
+      },
+      {
+        "name": "Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization",
+        "authority": "Coursera",
+        "license": "B8G4J3VY39E9",
+        "startDate": "2018-11-02",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/B8G4J3VY39E9"
+      },
+      {
+        "name": "Neural Networks and Deep Learning",
+        "authority": "Coursera",
+        "license": "UX63PJFC7XPR",
+        "startDate": "2018-10-24",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/UX63PJFC7XPR"
+      },
+      {
+        "name": "Machine Learning",
+        "authority": "Coursera",
+        "license": "CN8FETZFERZL",
+        "startDate": "2018-10-16",
+        "endDate": "",
+        "url": "https://www.coursera.org/account/accomplishments/certificate/CN8FETZFERZL"
+      },
+      {
+        "name": "Microsoft® Certified Professional",
+        "authority": "Microsoft",
+        "license": "9434842",
+        "startDate": "2012-10-01",
+        "endDate": "",
+        "url": ""
+      },
+      {
+        "name": "Microsoft® Certified Technology Specialist: .NET Framework 4, Web Applications",
+        "authority": "Microsoft",
+        "license": "9434842",
+        "startDate": "2012-10-01",
+        "endDate": "",
+        "url": ""
+      }
+    ],
+    "skills": [
+      {
+        "name": "Machine Learning",
+        "level": "",
+        "keywords": [
+          "PyTorch",
+          "fastai",
+          "Tensorflow",
+          "Tensorflow.js",
+          "Keras"
+        ]
+      },
+      {
+        "name": "Web Development",
+        "level": "",
+        "keywords": [
+          ".NET",
+          ".NET Core",
+          "React",
+          "Angular",
+          "Telligent Evolution",
+          "Sitecore"
+        ]
+      },
+      {
+        "name": "Programming Languages",
+        "level": "",
+        "keywords": [
+          "C#",
+          "Python",
+          "Haskell",
+          "Javascript",
+          "HTML5/CSS3",
+          "R",
+          "Octave",
+          "SQL",
+          "Java",
+          "C++",
+          "Perl"
+        ]
+      }
+    ]
+  } 
