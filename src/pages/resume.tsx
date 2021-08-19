@@ -13,7 +13,7 @@ const Basics = ({resume}) => (
         src="../images/steve.jpg" 
         alt="steve" />
     </div>
-    <div className="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+    <div className="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-2 mt-sm-4 mt-4">
       <div className="d-flex justify-content-between align-items-center mb-2">
         <h4 className="mb-0">{resume.basics.name}</h4>
       </div>
@@ -21,13 +21,13 @@ const Basics = ({resume}) => (
         <div className="col-auto">{resume.basics.label}</div>
       </div>
       <div className="row">
-        <div className="col-6 text-lg mb-0">
+        <div className="col-lg-6 text-lg mb-0">
           {resume.basics.location.city + ", " + resume.basics.location.region} <br />
           {resume.basics.email} <br />
           {resume.basics.website} <br />
           {resume.basics.phone} <br />
         </div>
-        <div className="col-6 text-lg mb-0">
+        <div className="col-lg-6 text-lg mb-0">
           {resume.basics.profiles.map(profile => (
             <div className="row">
               <div className="col-1">
@@ -108,20 +108,20 @@ const ResumePage = ({ data }) => {
       <section className="py-5 my-5">
         <div className="container">
           <div className="row">
-            <div className="col-10 mx-auto">
+            <div className="col-lg-10 mx-auto">
               <Basics resume={resume} />
             </div>
           </div>
           <div className="row">
-            <div className="col-10 mx-auto shadow">
+            <div className="col-lg-10 mx-auto shadow">
               <div className="row">
-                <div className="col-8">
+                <div className="col-md-8">
                   <h3 className="text-gradient text-primary">Experience</h3>
                   {resume.work.map(work => (
                     <Experience work={work} />
                   ))}
                 </div>
-                <div className="col-4">
+                <div className="col-md-4">
                   <h3 className="text-gradient text-primary">Skills</h3>
                   {resume.skills.map(skill => (
                     <Skill skill={skill} />
@@ -136,12 +136,12 @@ const ResumePage = ({ data }) => {
                 <div className="col">
                   <h3 className="text-gradient text-primary">Certifications</h3>
                   <div className="row">
-                    <div className="col">
+                    <div className="col-md">
                     {resume.certifications.slice(0,5).map(cert => (
                       <Certification cert={cert} />
                     ))}
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                     {resume.certifications.slice(5,9).map(cert => (
                       <Certification cert={cert} />
                     ))}

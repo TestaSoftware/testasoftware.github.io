@@ -46,7 +46,7 @@ const AboutPage = () => (
       <div className="container">
         <div className="row">
           <div className="col-lg-6 col-md-8 order-2 order-md-2 order-lg-1">
-            <div className="position-relative ms-md-5 mb-0 mb-md-7 mb-lg-0 d-none d-md-block d-lg-block d-xl-block h-75">
+            <div className="position-relative ms-md-5 mb-0 mb-md-7 mb-lg-0 d-none d-md-none d-lg-block d-xl-block h-75">
               <div className="bg-gradient-info w-100 h-100 border-radius-xl position-absolute"></div>
                 <img src="/assets/images/aboutme/steve-med.jpg" className="w-75 border-radius-xl mt-6 ms-5 position-absolute" alt="" />
             </div>
@@ -74,7 +74,7 @@ const AboutPage = () => (
             </div>
           </div>
           <div className="col-lg-6 col-md-8">
-            <div className="position-relative ms-md-5 d-none d-md-block d-lg-block d-xl-block h-75">
+            <div className="position-relative ms-md-5 d-none d-md-none d-lg-block d-xl-block h-75">
               <div className="w-100 h-100 bg-gradient-warning border-radius-xl position-absolute"></div>
               <img src="/assets/images/general/cleveland_skyline_750x244.jpg" className="w-100 border-radius-xl mt-6 ms-n5 position-absolute" alt="" />
             </div>
