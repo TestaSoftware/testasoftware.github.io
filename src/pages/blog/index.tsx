@@ -16,11 +16,11 @@ const PostSummary = ({ frontmatter, excerpt }) => (
         {frontmatter.categories.map(cat => (
         <span className="text-gradient text-primary text-gradient font-weight-bold text-sm text-uppercase">{cat} </span>
         ))}
-        <a href="javascript:;">
+        <Link to={"/blog/" + frontmatter.slug}>
           <h4>
             {frontmatter.title}
           </h4>
-        </a>
+        </Link>
         <p>
           {excerpt}
         </p>

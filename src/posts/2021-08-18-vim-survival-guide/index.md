@@ -3,10 +3,10 @@ title: Vim Survival Guide
 slug: 2017-07-27-vim-survival-guide
 image: /assets/images/blog/vim-tmux.png
 date: 2021-08-18
-categories: development
+categories: ["development", "tools"]
 ---
 
-For those unfamiliar, Vim is a console screen-based text editor. Vim is a clone of the Vi editor and stands for "Vi IMproved". It is free, open-source, and quite powerful indeed. It has some elegant features that many other editors lack. Leveraging features like motions and text objects can perform complex operations in few keystrokes making for a fast and productive workflow. Additionally, Vim has a vibrant community that develop plugins to extend functionality beyond just a text editor.  
+For those unfamiliar, Vim is a console screen-based text editor. Vim is a clone of the Vi editor and stands for "Vi IMproved". It is free, open-source, and quite powerful indeed. It has some elegant features that many other editors lack. Leveraging features like motions and text objects can perform complex operations in few keystrokes making for a fast and productive workflow.<!--more--> Additionally, Vim has a vibrant community that develop plugins to extend functionality beyond just a text editor.  
 
 With the ubiquity of Linux across cloud computing (and the fact that git uses it as the default editor), the odds of encountering Vim are high. The catch is that Vim's editing paradigms are different than most graphical editors. The intuitions developed in gui-based programs don't translate into a terminal editor and therefore Vim is often perceived as being difficult or having a high learning curve. However, with a minimal amount of knowledge and effort, Vim quickly becomes comfortable and is often described as being able to "speak" to the editor. 
 
