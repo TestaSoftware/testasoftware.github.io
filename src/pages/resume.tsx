@@ -161,7 +161,7 @@ export default ResumePage
 
 export const pageQuery = graphql`
   query {
-    dataJson(id: {eq: "d5c4d0db-b5eb-53f2-bd47-ccf8d26bd635"}) {
+    dataJson(basics: {name: {eq: "Steve Testa"}}) {
       basics {
         location {
           city
