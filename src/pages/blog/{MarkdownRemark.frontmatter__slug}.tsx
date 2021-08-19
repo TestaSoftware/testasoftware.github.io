@@ -20,7 +20,7 @@ export default function Template({ data }) {
       <section className="py-5">
         <div className="container">
           <div className="row">
-            <div className="col-9 mx-auto">
+            <div className="col-lg-9 mx-auto">
               <div className="h2">{frontmatter.title}</div>
               <div className="mb-5">{frontmatter.date} - <Link to="/about">Steve Testa</Link></div>
               <div
@@ -34,7 +34,7 @@ export default function Template({ data }) {
       <section className="py-5">
         <div className="container">
           <div className="row">
-            <div className="col-9 mx-auto">
+            <div className="col-lg-9 mx-auto">
               <Disqus config={disqusConfig} />
             </div>
           </div>

@@ -7,10 +7,10 @@ const Footer = ({ }) => (
     <hr className="horizontal dark mb-5" />
     <div className="container">
       <div className="row">
-        <div className="col-lg-3">
+        <div className="col-lg-3 text-lg-start text-center mb-lg-0 mb-3">
         <StaticImage src="../../images/logo/testasoftware-lambda.svg" height={22} alt="Testa Software"></StaticImage>
         </div>
-        <div className="col-lg-6 text-center">
+        <div className="col-lg-6 text-center mb-lg-0 mb-5">
           <ul className="nav flex-row align-items-center mb-5 mt-sm-0 justify-content-center">
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
@@ -29,7 +29,7 @@ const Footer = ({ }) => (
             © {new Date().getFullYear()} Testa Software
           </p>
         </div>
-        <div className="col-lg-3 text-end">
+        <div className="col-lg-3 text-lg-end text-center">
           <a href="https://github.com/stesta" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-github text-lg"></span>
           </a>
