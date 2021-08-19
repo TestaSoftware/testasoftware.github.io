@@ -70,7 +70,7 @@ const AboutPage = () => (
               </div>
               <h4 className="text-gradient text-warning mb-0">Connect With Me</h4>
               <h4 className="mb-4"></h4>
-              <p>I am always excited about the latest technologies and am passionate about code. I am always happy to discuss both. On the social web I tend to hang out on twitter. If you are in the Cleveland area you can catch me in person. I am a regular at some of Cleveland’s development related user groups: C# Sig or the group I started Cleveland Dev Craft.</p>
+              <p>I am always excited about the latest technologies and am passionate about code. I am always happy to discuss both. On the social web I tend to hang out on <a href="https://twitter.com/steven_testa">twitter</a>. If you are in the Cleveland area you can catch me in person. I am a regular at some of Cleveland’s development related user groups: <a href="http://www.meetup.com/Cleveland-C-VB-Net-User-Group/">C# Sig</a> or the group I started <a href="http://www.meetup.com/cledevcraft">Cleveland Dev Craft</a>.</p>
             </div>
           </div>
           <div className="col-lg-6 col-md-8">
