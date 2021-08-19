@@ -12,12 +12,83 @@ Anyway, I write a lot code using of Linq (to objects specifically). Particularly
 I'm usually so consumed in the task at hand that I forget to write and share these simple time-savers. Because this operation is so common for me, I wrote up some simple C# extensions on top of IEnumerable that replace this extra needless Linq.  
 
 **The IEnumerable Extensions**  
-<script src="https://gist.github.com/stesta/a7006d96fe2415e15279.js"></script>  
+```csharp
+public static class IEnumerableExtensions
+{
+    public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+    {
+        foreach (var item in items)
+        {
+            action(item);
+        }
+    }
+
+    public static void ForEach<T>(this IEnumerable<T> items, Action<T,int> action)
+    {
+        foreach (var item in items.Select((i,idx) => new { i, idx }))
+        {
+            action(item.i, item.idx);
+        }
+    }
+}
+```
  
 **Basic Usage**  
-<script src="https://gist.github.com/stesta/6ec32c49e3161b77b18c.js"></script>  
+```csharp
+var items = new List<object>()
+{
+  // ...
+};
+
+// old way...
+items
+  .OrderBy(item => item.SomeOrderValue)
+  .ToList()
+  .ForEach(i => 
+  {
+    // do somethings
+    var item = i;
+  });
+
+// new way ForEach over an IEnumerable
+items
+  .OrderBy(item => item.SomeOrderValue) // some linq that returns an IEnumerable<object>
+  .ForEach(i => 
+  {
+    // do something
+    var item = i;
+  });
+```
  
 **Usage Including Indexes**  
-<script src="https://gist.github.com/stesta/05e42eebe5719241a8c7.js"></script>  
+```csharp
+var items = new List<object>()
+{
+  // ...
+};
+
+// old way...
+items
+  .OrderBy(item => item.SomeOrderValue) // some linq that returns an IEnumerable<object>
+  .Select((item, idx) => new { item, idx })
+  .ToList()
+  .ForEach((i) => 
+  {
+    // do something
+    var item = i.item;
+    var index = i.idx;
+  });
+
+// ForEach over an IEnumerable that includes an index
+items
+  .OrderBy(item => item.SomeOrderValue) // some linq that returns an IEnumerable<object>
+  .ForEach((i, idx) => 
+  {
+    // do something
+    // however this time idx returns our index value in our foreach loop
+    var item = i;
+    var index = idx;
+  });
+```
 
 Simple and easy! Please feel free to share and use! (obligatory disclaimer about me not being responsible for your production code, blah, blah...)  

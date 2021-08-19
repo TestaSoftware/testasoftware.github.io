@@ -19,10 +19,69 @@ even fit well into the responsive design. It was comfortable to navigate both on
 
 I was able to drop this css right into my theme. (credit: [bootsnipp](http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3"))  
 
-<script src="https://gist.github.com/stesta/8ab822d72b03e130e60a.js"></script>
+```css
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+```
 
 All that was really left for me to do was to modify the lib/nav.php file to apply the appropriate 'dropdown-submenu' class attribute to the sub-menus.  
 
-<script src="https://gist.github.com/stesta/7cea5868830defe02c05.js"></script>
+```php
+// fixed the classes assigned to dropdown (around line 44)
+if ($element->is_dropdown && $depth !== 0) {
+    $element->classes[] = 'dropdown-submenu';
+}
+elseif ($element->is_dropdown) { 
+    $element->classes[] = 'dropdown'; 
+}
+
+// set menu depth from 2 to n (around line 84)
+$roots_nav_menu_args['depth'] = 3;
+```
 
 Hopefully this will be helpful to someone out there!  
