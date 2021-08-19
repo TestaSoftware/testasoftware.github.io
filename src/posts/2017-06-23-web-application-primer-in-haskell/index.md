@@ -37,4 +37,4 @@ Next up: [Haskell and our Core Code][goh-haskell]
 [liveDemo]: http://game-of-haskell.herokuapp.com
 [sourceCode]: https://github.com/stesta/GameOfLife 
 [dockerImage]: https://hub.docker.com/r/stesta/gameoflife/
-[goh-haskell]: /steve/blog/web-application-primer-in-haskell-programming-language  
+[goh-haskell]: /blog/2017-07-03-web-application-primer-in-haskell-programming-language  

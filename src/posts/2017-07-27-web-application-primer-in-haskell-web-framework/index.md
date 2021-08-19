@@ -34,13 +34,27 @@ The three files summarize as follows:
 
 The entry point for our application is very simple. All we're doing here is serving up our website via the `serveSnaplet` function which takes in a server configuration and a snaplet initializer. For the server configuration we're just using the `defaultConfig`. The snaplet initializer (`siteInit`) is defined a little further below.  
 
-<script src="https://gist.github.com/stesta/a977a111bb3f19fd905d79d34cefa5d6.js"></script>  
+```haskell
+main :: IO ()
+main = serveSnaplet defaultConfig siteInit
+```
 
 **Application.hs**  
 
 This file defines a data structure we can use to hold the state for our application. The App data structure will contain the state of all the snaplets we intend to user and in-turn wrap them all up as a Snaplet. Note that I don't understand the technical reasons, but the field names all need to begin with an underscore. Following that up with the `makeLenses` helper lets us call those field names *without* an underscore throughout the rest of our application.  
 
-<script src="https://gist.github.com/stesta/d6b663f1250ed43d83ff5586147029df.js"></script>  
+```haskell
+data App = App
+    { _heist :: Snaplet (Heist App) 
+    }
+
+makeLenses ''App
+
+instance HasHeist App where
+    heistLens = subSnaplet heist
+
+type AppHandler = Handler App App
+``` 
 
 The Application.hs is also where we've instanced out Heist and added a convenience type synonym called `AppHandler`.
 
@@ -48,7 +62,18 @@ The Application.hs is also where we've instanced out Heist and added a convenien
 
 Finally, we define a Site.hs to house our Snaplet initializer to initialize our site. When making this top level Snaplet the first the we end up doing is to initialize all of the nested Snaplets our site will use. In this case we're only initializing the Heist Snaplet for templating. Then there's some basic routing. Finally, a return of the resulting `App` state data structure.  
 
-<script src="https://gist.github.com/stesta/788a47d694447c01b1e368f78aa8309a.js"></script>  
+```haskell
+siteInit :: SnapletInit App App
+siteInit = makeSnaplet "app" "An snaplet example application." Nothing $ do
+    h <- nestSnaplet "" heist $ heistInit "templates"
+    addRoutes [ ("/", render "index.tpl")
+              , ("gameoflife", gameOfLife)
+              , ("/scripts", serveDirectory "assets/scripts")
+              , ("/styles", serveDirectory "assets/styles")
+              , ("", render "404.tpl")
+              ]
+    return $ App h
+```
 
 ### Setting up Websockets
 
@@ -58,7 +83,27 @@ Websockets are the no-brainer client-server communication protocol for the web. 
 
 If you review our site initializer you will find the `gameoflife` route. It points to an `AppHandler`. The handler runs a web socket `ServerApp`. The server app continually listens for new messages, expecting an integer to be sent across the wire, and returns the corresponding game state. The game state itself is packaged up as JSON using the [aeson][aeson] Haskell library.  
 
-<script src="https://gist.github.com/stesta/b38b9fd526a1142298a0f494a0475906.js"></script>  
+```haskell
+-- | Game of Life handler
+--------------------------------------------------------------------------------
+gameOfLife :: AppHandler () 
+gameOfLife = WS.runWebSocketsSnap gameOfLifeApp 
+
+
+-- | Game of Life server app
+-- set an initial board state and continually listen for
+-- the next msg::Int (corresponds to a board generation #) 
+-- sends back to the client the requested board via JSON array
+--------------------------------------------------------------------------------
+gameOfLifeApp :: WS.ServerApp
+gameOfLifeApp pending = do 
+    conn <- WS.acceptRequest pending
+    let game = evalState generations acorn
+    forever $ do
+        msg <- WS.receiveData conn
+        let g = read $ T.unpack msg :: Int
+        WS.sendTextData conn $ encode $ game!!g
+```
 
 ### Templating via Heist 
 
@@ -71,5 +116,5 @@ For webpage and HTML templating [Heist][heist] was a natural choice because it w
 [snapFramework]: http://snapframework.com/
 [snaplets]: http://snapframework.com/snaplets
 [heist]: http://snapframework.com/docs/tutorials/heist
-[goh-haskell]: /steve/blog/web-application-primer-in-haskell-programming-language  
-[aeson]: #
+[goh-haskell]: /blog/2017-07-03-web-application-primer-in-haskell-programming-language  
+[aeson]: https://github.com/haskell/aeson

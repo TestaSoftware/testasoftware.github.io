@@ -31,7 +31,11 @@ I've broken down two core types (Type Synonyms more specifically) for this progr
 - A board is a list of the living cells in the current generation.
 
 In Haskell these types were very easy to define using two Type Synonyms:  
-<script src="https://gist.github.com/stesta/2dbe61d87de8e552f2bdb8a45e2e9971.js"></script>
+
+```haskell
+type Cell = (Int, Int)
+type Board = [Cell]
+```
 
 The board's definition is an effort to avoid a fixed array size for the game. By only tracking the living cells we can manage a board that is arbitrarily large. The downside to this approach is that the calculations and rendering can slow down when there are high number of living cells. As of yet, I've made no effort to correct for that problem.  
 
@@ -41,19 +45,42 @@ This approach makes things particularly concise to define in Haskell. I'm sure t
 
 The live or die code is straight forward. I wrote a function that takes in a board and a single cell and returns a boolean as to whether that particular cell should live or die (or be born) for the next generation. 
 
-<script src="https://gist.github.com/stesta/02e0cfa3267818ec89c29174824d5390.js"></script>
+```haskell
+liveOrDie :: Board -> Cell -> Bool
+liveOrDie board cell 
+    | alive && ns     == 2 = True
+    | alive && ns     == 3 = True
+    | not alive && ns == 3 = True
+    | otherwise            = False 
+    where 
+        alive = isAlive board cell 
+        ns    = aliveNeighborCount board cell
+```
 
 As you can see from the code, using guards we can very clearly define the standard set of rules for the Game of Life. Ultimately, everything boils down to whether or not the cell is alive and the alive neighbor count (`ns`). There are a few helper functions being used - namely: `isAlive` and `aliveNeighborCount`. You can review the full implementation in [the source code][gameOfHaskell-Core]. They are fairly straightforward -  `isAlive` basically looks to see if the the cell exists on the current board and `aliveNeighboardCount` makes that same check against all of the neighboring cells. 
 
 Once we have our `liveOrDie` function defined it was easy enough to use the State Monad to calculate what the next generation of a board should look like and put that into the next state. 
 
-<script src="https://gist.github.com/stesta/1543868341e5919041c09f3b2974b810.js"></script>
+```haskell
+generation :: State Board Board
+generation = do 
+    board <- get
+    let deadNeighbors = nub $ filter (not . isAlive board) $ concatMap neighbors board
+    put $ filter (liveOrDie board) $ board ++ deadNeighbors
+    return board 
+```
 
 We get all of the surrounding dead neighbors. For each of the dead neighbors and the currently living cells, we filter out only the cells that should live for the next generation and that becomes our new board. 
 
 The last thing I did was to create one final function that again uses a State Monad to compute not just a single generation, but also recurisively defines an infinite list of all future generations. Haskell's laziness for the win! 
 
-<script src="https://gist.github.com/stesta/9ec842a83700a8e955f68159aa596a5f.js"></script>
+```haskell
+generations :: State Board [Board]
+generations = do 
+    board <- generation 
+    future <- generations
+    return (board : future)
+```
 
 If you've pulled down my [source code][gameOfHaskell-FullSource] you can test all this by loading Core.hs into the ghci 
 
