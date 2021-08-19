@@ -36,11 +36,15 @@ Visualizing Git History from the Command Line
 
 There are plenty of graphical tools out there that help visualize Git history, but did you know you can do that from the command line? Personally, I enjoy the command line. Git commands can be cumbersome at times, but it really helps me to be clear and certain about every action I am performing against the code base. That being the case it's nice not to have to leave the command line when I need to review the Git logs. The following Git command will display a nice command line graph for us.  
 
-    git log --graph --oneline --abbrev --color --decorate 
+```bash
+git log --graph --oneline --abbrev --color --decorate 
+```
 
 One additional little tip is that I like to set up that command as an alias to `gg` in the ~/.bashrc file. This let's us just type `gg` (for git graph) into the command line instead of having to type out that long statement every single time. 
  
-    alias gg=git log --graph --oneline --abbrev --color --decorate 
+```bash
+alias gg=git log --graph --oneline --abbrev --color --decorate 
+```
 
 The `gg` command yields the following result
 
