@@ -35,6 +35,6 @@ jobs:
     - name: Deploy to GitHub Pages
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/TestaSoftware/testasoftware.github.io.git
-        npx gh-pages -d public -b gh-pages -u "Steve Testa <steve@testasoftware.com>" -m "Deploying to gh-pages from @ npx gh-pages -d public -b gh-pages -u "Steve Testa <steve@testasoftware.com>" -m "Deploying to gh-pages from @ TestaSoftware/testasoftware.github.io@${{ env.GITHUB_SHA }} 🚀"
+        npx gh-pages -d public -b gh-pages -u "Steve Testa <steve@testasoftware.com>" -m "Deploying to gh-pages from @ TestaSoftware/testasoftware.github.io@${{ env.GITHUB_SHA }} 🚀"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
