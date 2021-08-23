@@ -1,6 +1,6 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { Disqus, CommentCount } from "gatsby-plugin-disqus"
+import * as React from "react"
+import { graphql } from "gatsby"
+import { Disqus } from "gatsby-plugin-disqus"
 
 import DefaultLayout from "../../layouts/default"
 import PostHeader from "../../components/blog/postheader"
@@ -21,8 +21,8 @@ export default function Template({ data }) {
         <div className="container">
           <div className="row">
             <div className="col-lg-9 mx-auto">
-              <div className="h2">{frontmatter.title}</div>
-              <div className="mb-5">{frontmatter.date} - <Link to="/about">Steve Testa</Link></div>
+              {/*<div className="h2">{frontmatter.title}</div>*/}
+              {/*<div className="mb-5">{frontmatter.date} - <Link to="/about">Steve Testa</Link></div>*/}
               <div
                 className="blog-post-content"
                 dangerouslySetInnerHTML={{ __html: html }}

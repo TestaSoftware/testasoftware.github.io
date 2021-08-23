@@ -11,8 +11,8 @@ const PostHeader = ({ frontmatter }) => (
         <div className="row">
           <div className="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
             <h1 className="text-gradient text-primary">{frontmatter.title}</h1>
-            <h1 className="mb-4"></h1>
-            <p className="lead pe-5 me-5">{frontmatter.date}</p>
+            <p className="mb-4"></p>
+            <p className="lead pe-5 me-5">{frontmatter.date} - Steve Testa</p>
           </div>
         </div>
       </div>
