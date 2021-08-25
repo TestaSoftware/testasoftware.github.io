@@ -3,6 +3,7 @@ title: Web Application Primer in Haskell - Haskell
 slug: 2017-07-03-web-application-primer-in-haskell-programming-language
 image: /assets/images/blog/thumbnails/haskell.png
 date: 2017-07-03
+categories: ["web development", "haskell"]
 ---
 
 In this series, we're going to work our way through the development stack bottom-up. So to kick off our Haskell web application primer we're going to start with Haskell and core Game of Life code.<!--more--> 

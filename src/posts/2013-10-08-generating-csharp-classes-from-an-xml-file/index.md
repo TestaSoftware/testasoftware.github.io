@@ -3,6 +3,7 @@ title: Generating C# Classes from an XML File
 slug: 2013-10-08-generating-csharp-classes-from-an-xml-file
 image: /assets/images/blog/thumbnails/code2.jpg
 date: 2013-10-08
+categories: ["development"]
 ---
 Update: Visual Studio has this functionality baked in! `Edit -> Paste Special`
 

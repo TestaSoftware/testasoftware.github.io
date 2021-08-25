@@ -3,6 +3,7 @@ slug: 2012-08-08-natural-string-sorting
 title: Natural String Sorting
 image: /assets/images/blog/thumbnails/data-sorting-lego.jpg
 date: 2012-08-08
+categories: ["development", "c#"]
 ---
 Here's the quick run down of the problem. Let's suppose you have a list of string that contain numeric values. When you sort 
 that list in .Net they probably don't get returned in the manner you'd expect. They get returned based upon their ASCII string values 

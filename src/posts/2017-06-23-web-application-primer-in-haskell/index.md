@@ -3,6 +3,7 @@ title: Web Application Primer in Haskell - Overview
 slug: 2017-06-23-web-application-primer-in-haskell
 image: /assets/images/blog/thumbnails/haskell.png
 date: 2017-06-23
+categories: ["web development", "haskell"]
 ---
 
 In this upcoming series of posts we're going to go over the end-to-end process on how to build and deploy a web application using Haskell.<!--more--> I use the term "web application" instead of "website" because the implication is that we're building something more than just some static HTML and CSS. The intent is to build an actual application with dynamic front-end behavior that is in direct communication with the back-end code. 

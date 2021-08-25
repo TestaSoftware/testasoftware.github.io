@@ -3,6 +3,7 @@ title: Knockout Binding Handler for Google Maps
 slug: 2014-01-04-knockout-binding-handler-for-google-maps
 image: /assets/images/blog/thumbnails/boxing.jpg
 date: 2014-01-04
+categories: ["javascript", "knockout.js"]
 ---
 Knockout Binding Handlers, FTW!
 

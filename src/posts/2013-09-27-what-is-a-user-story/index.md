@@ -3,6 +3,7 @@ title: What is a User Story?
 slug: 2013-09-27-what-is-a-user-story
 image: /assets/images/blog/thumbnails/flow-charting.jpg
 date: 2013-09-27
+categories: []
 ---
 User stories are becoming more prevalent these days. While a user story by itself can be use autonomously, they're also used
 heavily in agile methodologies like scrum. The definition of a user story is simple:

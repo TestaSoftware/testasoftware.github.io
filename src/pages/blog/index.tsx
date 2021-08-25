@@ -13,7 +13,9 @@ const PostSummary = ({ frontmatter, excerpt }) => (
         </Link>
       </div>
       <div className="card-body px-0 pt-4">
-        <p className="text-gradient text-primary text-gradient font-weight-bold text-sm text-uppercase">Development</p>
+        {frontmatter.categories.map(cat => (
+        <span className="text-gradient text-primary text-gradient font-weight-bold text-sm text-uppercase">{cat} </span>
+        ))}
         <a href="javascript:;">
           <h4>
             {frontmatter.title}
@@ -61,6 +63,7 @@ export const pageQuery = graphql`
             title
             image
             date
+            categories
           }
           excerpt
         }
