@@ -43,11 +43,54 @@ to move everything over. Some of the pertinent items include: (Note these are ju
 
 **a reference to the caching config**
 
-<script src="https://gist.github.com/stesta/997b4eda49c5718a7992.js"></script>
+```xml
+<telligent.caching configSource="caching.config" />
+```
 
 **system.web settings for membership and profile**
 
-<script src="https://gist.github.com/stesta/c0d54d082183916abdb9.js"></script>
+```xml
+<system.web>
+  <membership userIsOnlineTimeWindow="15" defaultProvider="Telligent.EvolutionSqlProvider">
+    <providers>
+      <clear />
+      <add name="Telligent.EvolutionSqlProvider" type="Telligent.Evolution.AspNetMemberRole.CSMembershipProvider, Telligent.Evolution.AspNetMemberRole" connectionStringName="SiteSqlServer" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="true" passwordFormat="Hashed" applicationName="dev" description="Stores and retrieves membership data from the local Microsoft SQL Server database" maxInvalidPasswordAttempts="5" passwordAttemptWindow="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" />
+    </providers>
+  </membership>
+  <profile defaultProvider="Telligent.EvolutionSqlProvider" enabled="true">
+    <providers>
+      <clear />
+      <add name="Telligent.EvolutionSqlProvider" type="Telligent.Evolution.AspNetMemberRole.CSProfileProvider, Telligent.Evolution.AspNetMemberRole" connectionStringName="SiteSqlServer" applicationName="dev" description="Stores and retrieves profile data from the local Microsoft SQL Server database" />
+    </providers>
+    <properties>
+      <add name="commonName" type="string" />
+      <add name="birthdate" type="DateTime" />
+      <add name="gender" type="int" defaultValue="0" />
+      <add name="dateFormat" type="string" />
+      <add name="publicEmail" type="string" />
+      <add name="language" type="string" />
+      <add name="webAddress" type="string" />
+      <add name="webLog" type="string" />
+      <add name="webGallery" type="string" />
+      <add name="signature" type="string" />
+      <add name="signatureFormatted" type="string" />
+      <add name="location" type="string" />
+      <add name="occupation" type="string" />
+      <add name="interests" type="string" />
+      <add name="msnIM" type="string" />
+      <add name="yahooIM" type="string" />
+      <add name="aolIM" type="string" />
+      <add name="icqIM" type="string" />
+      <add name="enablePostPreviewPopup" type="System.Boolean" defaultValue="false" />
+      <add name="enableEmoticons" type="System.Boolean" defaultValue="true" />
+      <add name="timezone" type="System.Double" defaultValue="0" />
+      <add name="timeZoneInfo" type="string" />
+      <add name="fontsize" type="int" defaultValue="0" />
+      <add name="bio" type="string" />
+    </properties>
+  </profile>
+</system.web>
+```
 
 **Note:** Additionally, I generally also like to copy connectionstrings.config settings directly into the App.config of my 
 unit test project. You will probably want to point to a test database anyway.
@@ -62,15 +105,62 @@ the place.
 
 **Using(s) Needed**
 
-<script src="https://gist.github.com/stesta/28b08353e3718a1e50b5.js"></script> 
+```csharp
+using Ninject;
+using Ninject.Modules;
+using Telligent.Evolution.Api.Bridge.Providers;
+using Telligent.Evolution.Components;
+using Telligent.Evolution.Wikis.Components;
+```
 
 **Telligent Evolution 6.x**
 
-<script src="https://gist.github.com/stesta/42cca6da12520fd368d1.js"></script>
+```csharp
+[TestClass]
+public class UnitTestBase
+{
+    [TestInitialize]
+    public void Initialize()
+    {
+        if (!Telligent.Common.Services.IsInitialized)
+        {
+            // Set up a Ninject kernel with Telligents Legacy modules
+            var kernel = new StandardKernel();
+
+            // Load Telligent Modules
+            kernel.Load(new INinjectModule[] { new Telligent.Evolution.Web.Modules.LegacyProvidersModule() });
+            kernel.Load("../../Modules/*.config");
+
+            if (!Telligent.Common.Services.IsInitialized)
+                Telligent.Common.Services.Initialize(kernel);
+        }
+    }
+}
+```
 
 **Telligent Evolution 7.x**
 
-<script src="https://gist.github.com/stesta/82589e00299d51701f2b.js"></script>
+```csharp
+[TestClass]
+public class UnitTestBase
+{
+    [TestInitialize]
+    public void Initialize()
+    {
+        if (!Telligent.Common.Services.IsInitialized)
+        {
+            // Set up a Ninject kernel with Telligents Legacy modules
+            EvolutionKernel kernel = new EvolutionKernel();
+
+            // Note there are no legacy modules to load here<br />            // Load Telligent Modules
+            kernel.Load("../../Modules/*.config");
+
+            if (!Telligent.Common.Services.IsInitialized)
+                Telligent.Common.Services.Initialize(kernel);
+        }
+    }
+}
+```
 
 ### Step 5: Write Your Tests!
 
@@ -80,11 +170,52 @@ instance of the Ninject kernel that we built and initialized. Additionally, in o
 to get any of our services we have writing it will resolve our constructor injections without the service locator 
 error anymore!
 
-<script src="https://gist.github.com/stesta/20c6b87a86df366f2d2e.js"></script>
+```csharp
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Tests
+{
+    [TestClass]
+    public class UnitTestSample : UnitTestBase
+    {
+        [TestMethod]
+        public void should_retrieve_a_user_from_PublicApi()
+        {
+            var svc = Telligent.Common.Services.Get<TestService>();
+            var u = svc.GetUser();
+            Assert.IsNotNull(u);
+
+        }
+    }
+}
+```
 
 An example of the *TestService* that uses the Telligent PublicApi.
 
-<script src="https://gist.github.com/stesta/afa738833a63b214fdc6.js"></script>
+```csharp
+using System;
+using Telligent.Evolution.Extensibility.Api.Version1;
+
+namespace Tests
+{
+    public class TestService
+    {
+        private Telligent.Evolution.Components.IUserService _userService = null;
+
+        public TestService(Telligent.Evolution.Components.IUserService userService)
+        {
+            _userService = userService;
+        }
+
+        public Telligent.Evolution.Extensibility.Api.Entities.Version1.User GetUser(string username)
+        {
+            var u = PublicApi.Users.Get(new UsersGetOptions() { Username = username });
+            return u;
+        }
+    }
+}
+```
 
 And that's it! Those are the basics of how to set up unit testing with the Telligent PublicApi. Just please bear in mind 
 that there is more to consider beyond the simple examples provided. For instance, you can also make sure that your 

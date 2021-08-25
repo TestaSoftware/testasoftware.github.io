@@ -4,7 +4,7 @@ slug: 2013-10-08-generating-csharp-classes-from-an-xml-file
 image: /assets/images/blog/thumbnails/code2.jpg
 date: 2013-10-08
 ---
-Update: Visual Studio has this functionality baked in! 
+Update: Visual Studio has this functionality baked in! `Edit -> Paste Special`
 
 <strike>
 I frequently come to the conclusion that I'm working too hard. This is usually because I try to reinvent the wheel when some<!--more-->one 

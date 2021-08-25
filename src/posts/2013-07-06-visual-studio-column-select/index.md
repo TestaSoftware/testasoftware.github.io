@@ -4,7 +4,7 @@ slug: 2013-07-06-visual-studio-column-select
 image: /assets/images/blog/thumbnails/columns.jpg
 date: 2013-07-06
 ---
-If you're not familiar with column select you're missing out on a ton of multi-line editing goodness. Just hold down the alt <!--more-->key while you're selecting items with your mouse and you'll see what I mean.
+If you're not familiar with column select you're missing out on a ton of multi-line editing goodness. Just hold down the alt key while you're selecting items with your mouse and you'll see what I mean.<!--more-->
 
 ```
 alt+left mouse
