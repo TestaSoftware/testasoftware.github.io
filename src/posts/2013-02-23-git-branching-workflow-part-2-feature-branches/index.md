@@ -70,6 +70,6 @@ After you save git will then perform the rebase and squashing! All that's needed
 into the local/development branch and push it up to origin/development to share with the rest of the team!
 
 ### Posts in This Series
-[Part 1: Overview](/blog/2013-02-23-git-branching-workflow-part-1-overview)
+[Part 1: Overview](/blog/2013-01-25-git-branching-workflow-part-1-overview)
 
 Part 2: Feature Branches

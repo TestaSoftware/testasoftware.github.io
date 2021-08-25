@@ -5,7 +5,7 @@ image: /assets/images/blog/thumbnails/fractal.jpg
 date: 2013-09-10
 ---
 Recursion can sometimes hurt the brain. Here is a clear and concise way to do recursion using C# lambdas and linq. 
-Let's sta<!--more-->rt with a common scenario, recursing through a tree. Imagine that we've got a tree of "Nodes". For 
+Let's start with a common scenario, recursing through a tree. Imagine that we've got a tree of "Nodes". <!--more-->For 
 our purposes a Node is just a simple class that has an Id and a way to identify its parent Node (via ParentId in this case).
 
 ```csharp
