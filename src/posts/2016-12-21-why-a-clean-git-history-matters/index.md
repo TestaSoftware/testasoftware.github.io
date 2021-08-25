@@ -3,6 +3,7 @@ title: Why a Clean Git History Matters
 slug: 2016-12-21-why-a-clean-git-history-matters
 image: /assets/images/blog/thumbnails/git.jpg
 date: 2016-12-21
+categories: ["devops", "git"]
 ---
 
 Ugly git histories annoy the hell out of me!!!<br />  

@@ -3,6 +3,7 @@ title: "Git Branching Workflow - Part 2: Feature Branches"
 slug: 2013-02-23-git-branching-workflow-part-2-feature-branches
 image: /assets/images/blog/thumbnails/tree-branch2.jpg
 date: 2013-02-23
+categories: ["devops", "git"]
 ---
 Disclaimer: The following section of our workflow includes rebasing. Rebasing can be a dangerous operation of you don't know what you're doing. Commits can be lost and you can make life hell for a developer who is working off of a commit you've borked. So follow the golden rule... **Do not rebase commits that you have pushed to a public repository**. Thanks!<!--more-->
 

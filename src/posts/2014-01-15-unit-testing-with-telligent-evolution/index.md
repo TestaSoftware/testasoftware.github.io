@@ -3,6 +3,7 @@ title: Unit Testing with Telligent Evolution
 slug: 2014-01-15-unit-testing-with-telligent-evolution
 image: /assets/images/blog/thumbnails/keys.jpg
 date: 2014-01-15
+categories: ["development", "c#", "telligent"]
 ---
 Kaboom! *The service locator has not been initialized*  <!--more--> 
 

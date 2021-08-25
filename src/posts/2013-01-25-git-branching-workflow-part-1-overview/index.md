@@ -3,6 +3,7 @@ title: "Git Branching Workflow - Part 1: Overview"
 slug: 2013-01-25-git-branching-workflow-part-1-overview
 image: /assets/images/blog/thumbnails/tree-branch.jpg
 date: 2013-01-25
+categories: ["devops", "git"]
 ---
 In this post I'm going to explain the current development model for my team. We use [Git][1] very heavily. I will go over our branching 
 workflow with some explanation of the basics, but if you need to learn some more about Git try the book [Git Pro][2]. It is available as 
