@@ -7,7 +7,7 @@ const Navbar = ({  }) => (
   <nav className="navbar navbar-expand-lg blur blur-rounded position-absolute my-3 top-0 border-bottom py-3 z-index-3 shadow my-3 py-2 start-0 end-0 mx-4">
     <div className="container">
       <Link className="navbar-brand" to="/">
-        <StaticImage src="../../images/logo/testasoftware-lambda.svg" height={22} alt="Testa Software"></StaticImage>
+        <StaticImage src="../../images/logo/testasoftware-lambda-med.png" alt="Testa Software"></StaticImage>
       </Link>
       <button className="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon mt-2">

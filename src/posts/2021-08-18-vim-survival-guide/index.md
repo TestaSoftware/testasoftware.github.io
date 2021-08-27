@@ -180,14 +180,15 @@ We can push the usefulness of this system even further with a few Vim plugins.
 Plugins and Configuration
 -------------------------
 
-[vim-plug](https://github.com/junegunn/vim-plug)
+Vim 8 has native support for plugins, but it can also be a good idea to pick a plugin manager. Personally, I use [vim-plug](https://github.com/junegunn/vim-plug). It's minimal and easy to use. There are, however, plenty of great options out there including managers like [vundle](https://github.com/VundleVim/Vundle.vim) and [pathogen](https://github.com/tpope/vim-pathogen). Pick your poison, follow their setup instructions, and find some cool plugins... I've got a few to get you started.   
 
-A few to get you started. 
+[vim-sensible](https://github.com/tpope/vim-sensible) will help get you setup with a sensible set of vim defaults. This is a great place to start, especially if you're a beginner.  
 
-[vim-sensible](https://github.com/tpope/vim-sensible)  
-[vim-surround](https://github.com/tpope/vim-surround)  
-[vim-commentary](https://github.com/tpope/vim-commentary)  
-[nerdtree](https://github.com/preservim/nerdtree)  
+[vim-surround](https://github.com/tpope/vim-surround) adds the "surrounding" modifier to your Vim syntax. It makes for a beautiful way to operate on text objects and their surrounding objects (like quotes or html tags). Checkout their git readme for some examples of just how powerful this plugin actually is.   
+
+[vim-commentary](https://github.com/tpope/vim-commentary) is a plugin that make commenting a lot nicer. You can comment and uncomment entire lines or can be used in conjunction with motions to target more complex objects and structures.  
+
+[nerdtree](https://github.com/preservim/nerdtree) an awesome file tree explorer for Vim (think of the Explorer panel in VS Code). It is packed with a lot of extra functionality to quickly perform actions on the files displayed.   
 
 There are even more plugins out there that add even more text objects.
 
@@ -237,4 +238,4 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 ```
- 
+If you'd like to take a peek at <a href="https://raw.githubusercontent.com/stesta/dotfiles/master/.config/nvim/init.vim" class="text-info">my vim configuration</a> feel free. Note that I use Neovim (an alternative to the version of Vim maintained by Bram Moolenaar), but the syntax should be the same or really close to it for a regular .vimrc file. At the very least this will give an idea of how to go about starting to customize your own instance of Vim.    
