@@ -1,0 +1,241 @@
+---
+title: Vim Survival Guide
+slug: 2017-07-27-vim-survival-guide
+image: /assets/images/blog/vim-tmux.png
+date: 2021-08-18
+categories: ["development", "tools"]
+---
+
+For those unfamiliar, Vim is a console screen-based text editor. Vim is a clone of the Vi editor and stands for "Vi IMproved". It is free, open-source, and quite powerful indeed. It has some elegant features that many other editors lack. Leveraging features like motions and text objects can perform complex operations in few keystrokes making for a fast and productive workflow.<!--more--> Additionally, Vim has a vibrant community that develop plugins to extend functionality beyond just a text editor.   
+
+Please note that it is not my goal to convert you to developing solely on Vim, but with the ubiquity of Linux across cloud computing, Windows Subsystem for Linux, and the fact that git uses it as the default editor, the odds of encountering Vim as a developer are high. The catch is that Vim's editing paradigms are different than most graphical editors. The intuitions developed in gui-based programs don't translate into a terminal editor and therefore Vim is often perceived as being difficult or having a high learning curve. However, with a minimal amount of knowledge and effort, Vim quickly becomes comfortable and is often described as being able to "speak" to the editor. 
+
+Working comfortably and efficiently in Vim means learning a few basic concepts and commands. I'll attempt to cover some of the features I have found most useful to provide a solid foundation in Vim. There is a lot to learn and it depends on the individual circumstance, but it is often worth it to spend extra effort learning advanced concepts, installing plugins, and configuring the editor for convenience and speed. 
+
+**Quick Tip:** your first Vim steps can also be taken by running `vimtutor` from the command line on any system where Vim is installed. It will bring up the built-in Vim tutorial where you can practice any of the commands and concepts you might need. 
+
+
+Basic Survival
+--------------
+
+If you're just trying to understand how to edit your git commits and get out, here's what you need to make it out of the Vim editor alive. 
+
+- Vim starts in Normal mode, it's for issuing commands not typing text to the screen
+- Press `i` to enter Insert mode. You should see "-- INSERT --" displayed at the bottom left corner of the console. In Insert mode you can update text as you would normally expect, use the arrow keys to move around.
+- Press `[Esc]` to exit Insert mode and return to Normal mode, the "-- INSERT --" will disappear
+- Type `:wq` to "write" the change and "quit" the editor. This is equivalent to saving a file and closing the window in a gui-based editor.
+
+Vim can get tricky if things are going wonky. If you're in a bind you have a couple easy options:  
+
+1. **Undo all the changes made**: Type `[Esc]` to return to Normal Mode (Vim's default mode) and then press the `u` key to undo your changes as far as you need. Once you've undone everything feel free to start again with the `i` to re-enter Insert mode and try again. 
+
+2) **Quit the editor without saving**: Again, make sure to return to Normal mode using the `[Esc]` key and type `:q!` which will quit Vim while explicitly indicating that any changes made will be lost.
+
+That should be enough Vim knowledge to update some Git commit messages, but if you're interested let dig into a few of the concepts..
+
+
+### Modal Editing
+
+Modal editing is the first stumbling block for most people. It was mentioned in passing, but Vim uses the concept of "modes" to split up functionality into logical groupings. There are several modes and using Vim requires knowing what the individual modes are for and how to switch between them. The common intuition is to be able to start typing and for text to appear on the screen. That can certainly In Vim, however, the default mode at startup is Normal mode which instead interprets most key presses as editor commands. Insert mode would instead be chosen to insert new text. 
+
+I highly recommed checking out out the following short video. It convers the topic of Modal Editing and the power of Vim's Motion system. It's from a site called [Vim Casts](https://vimcasts.org) which is a phenomenal resource to continue learning Vim concepts in easily digestable bites. It explaions the purpose behind modal editing and should start to give you an appreciation of just how and why Vim is such a powerful editor and a favorite of many.   
+
+[Vim Casts - Modal Editing: undo, redo and repeat](http://vimcasts.org/episodes/modal-editing-undo-redo-and-repeat/)  
+
+
+### Commands
+
+A lot of commands may look hard to memorize, but once you learn the "language" of Vim it becomes easier and intuitive to understand with very little memorization. We'll go over this more in the next section. For now here's a list of some basic commands as reference.
+
+**Modes**
+
+`[Esc]`	- Normal Mode  
+`i`		- Insert Mode   
+`v`		- Visual Mode   
+
+**Movement**
+
+Arrow keys can be used to navigate the screen, but part of the Vim philosophy is that your hands and fingers should not need to travel far. 
+
+`h` - move cursor left  
+`j` - move cursor down  
+`k` - move cursor up  
+`l` - move cursor right  
+
+`0` - beginning of line  
+`$` - end of line  
+
+`gg` - top of file  
+`G` - end of file  
+
+`w` - move to start of the next word  
+`b` - move to the start of the last word  
+
+**Editing**
+
+`.` - repeat last command  
+
+`r` - replace character under the cursor  
+`cc` - change (replace) the entire line  
+`ciw` - change (replace) the entire word  
+
+`yy` = yank (copy) line  
+`yiw` = yank (copy) word  
+`p` = put (paste) after the cursor  
+`dd` = delete (cut) line  
+`diw` = delete (cut) word  
+`x` = delete character  
+
+`>>` - indent text  
+`<<` - de-indent text  
+
+**Insert Mode**  
+
+These commands will perform an action and simulataneously put Vim into Insert mode in a single motion.  
+
+`i` - insert  
+`a` - append after the cursor  
+`A` - append at the end of the line  
+`o` - append a new line below the current line  
+`O` - append a new line above the current line  
+
+**Search and Replace**  
+
+`/pattern` - search for a pattern  
+`n` - repeat the search in the same direction  
+`N` - repeat the search in the opposite direction  
+`:noh` - remove highlighting  
+
+**Saving and Exiting**  
+
+`:w` - write (save) the file  
+`:wq` - write (save) the file and exit  
+`:q` - quit, will fail if there are unsaved changes  
+`:q!` - quit, ignore unsaved changes
+`:qa!` - quit all files and ignore unsaved changes
+`:wqa` - save and quit all files
+
+
+Speaking the Language
+---------------------
+
+Instead of memorizing commands, really you should be looking at Vim commands in terms of "verb modifier object" syntax. This is syntax is what will allow you to "speak" to the editor. 
+
+**Verbs**  
+
+Hopefully the idea of a verb is pretty self-explanatory. It's the desired action.  
+
+`c` - change  
+`d` - delete (cut)  
+`y` - yank (copy)  
+
+**Modifiers**  
+
+Modifiers modify the way in which the object we're targeting is being selected.  
+
+`i` - inside  
+`a` - around  
+`t` - 'till (until a charater)  
+`f` - find (like 'till, but includes the found character)  
+
+**Objects**  
+
+The target object we're trying to select.  
+
+`w` - word  
+`s` - sentence  
+`p` - paragraph  
+`t` - tag  
+
+Combining these into a single command/motion looks something like the following.
+
+```bash
+# Example: We want to `delete` a word when the cursor is  
+# currently hovered over *any* part of that word. To  
+# accomplish this we would need to leverage the `inside` 
+# modifer of the `word` object. 
+
+diw
+```
+
+```bash
+# Example: We want to `change` the text `inside` some 
+# double quotes.
+
+ci"
+```
+
+We can even combine quantities and movement. 
+
+```bash
+# Example: We want to copy the next 3 lines 
+# We would `yank` the next `3` lines `downward` 
+
+y3j
+```  
+
+We can push the usefulness of this system even further with a few Vim plugins.  
+
+
+Plugins and Configuration
+-------------------------
+
+Vim 8 has native support for plugins, but it can also be a good idea to pick a plugin manager. Personally, I use [vim-plug](https://github.com/junegunn/vim-plug). It's minimal and easy to use. There are, however, plenty of great options out there including managers like [vundle](https://github.com/VundleVim/Vundle.vim) and [pathogen](https://github.com/tpope/vim-pathogen). Pick your poison, follow their setup instructions, and find some cool plugins... I've got a few to get you started.   
+
+[vim-sensible](https://github.com/tpope/vim-sensible) will help get you setup with a sensible set of vim defaults. This is a great place to start, especially if you're a beginner.  
+
+[vim-surround](https://github.com/tpope/vim-surround) adds the "surrounding" modifier to your Vim syntax. It makes for a beautiful way to operate on text objects and their surrounding objects (like quotes or html tags). Checkout their git readme for some examples of just how powerful this plugin actually is.   
+
+[vim-commentary](https://github.com/tpope/vim-commentary) is a plugin that make commenting a lot nicer. You can comment and uncomment entire lines or can be used in conjunction with motions to target more complex objects and structures.  
+
+[nerdtree](https://github.com/preservim/nerdtree) an awesome file tree explorer for Vim (think of the Explorer panel in VS Code). It is packed with a lot of extra functionality to quickly perform actions on the files displayed.   
+
+There are even more plugins out there that add even more text objects.
+
+http://vimcasts.org/episodes/working-with-buffers/  
+http://vimcasts.org/episodes/working-with-windows/  
+
+```bash
+# vim config file
+~/.vimrc
+
+# nvim config file
+~/.config/nvim/init.vim
+```
+
+This setting became really helpful when I started getting on board with using Vim and numbers as modifiers.
+
+```bash
+set number relative
+```
+
+This makes moving between windows in Vim a little more intuitive. Use Ctrl + Direction to move between windows. I use this along with a corresponding tmux binding to get really fluid and seamless movements between Vim and tmux when I've got a working session going. I use a set up simliar to this one: [Tmux and Vim - even better together](https://www.bugsnag.com/blog/tmux-and-vim).
+
+```bash
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+```
+
+Configure Ctrl + S to write (save) a file. 
+
+```bash
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+```
+
+Configure the Alt + Up/Down (j,k) keys to move entire lines. Note this will configure that keybinding for Normal, Insert, and Visual modes.
+
+```bash
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+```
+If you'd like to take a peek at <a href="https://raw.githubusercontent.com/stesta/dotfiles/master/.config/nvim/init.vim" class="text-info">my vim configuration</a> feel free. Note that I use Neovim (an alternative to the version of Vim maintained by Bram Moolenaar), but the syntax should be the same or really close to it for a regular .vimrc file. At the very least this will give an idea of how to go about starting to customize your own instance of Vim.    
