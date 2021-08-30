@@ -6,8 +6,8 @@ name: Gatsby Build and Deploy
 on:
   push:
     branches: [ main ]
-  # pull_request:
-  #   branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,6 +18,10 @@ jobs:
       matrix:
         node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        IS_MAIN: ${{ github.ref == 'refs/heads/main' }}
 
     steps:
     - uses: actions/checkout@v2
@@ -33,8 +37,8 @@ jobs:
     - name: Test
       run: npm test
     - name: Deploy to GitHub Pages
+      if: ${{ env.IS_MAIN }}
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/TestaSoftware/testasoftware.github.io.git
         npx gh-pages -d public -b gh-pages -u "Steve Testa <steve@testasoftware.com>" -m "Deploying to gh-pages from @ TestaSoftware/testasoftware.github.io@${GITHUB_SHA} :rocket:"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
