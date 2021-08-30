@@ -8,7 +8,9 @@ const Footer = ({ }) => (
     <div className="container">
       <div className="row">
         <div className="col-lg-3 text-lg-start text-center mb-lg-0 mb-3">
-        <StaticImage src="../../images/logo/testasoftware-lambda.svg" height={22} alt="Testa Software"></StaticImage>
+        <Link className="navbar-brand" to="/">
+          <StaticImage src="../../images/logo/testasoftware-lambda-med.png" alt="Testa Software"></StaticImage>
+        </Link>
         </div>
         <div className="col-lg-6 text-center mb-lg-0 mb-5">
           <ul className="nav flex-row align-items-center mb-5 mt-sm-0 justify-content-center">
