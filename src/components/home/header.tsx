@@ -3,28 +3,35 @@ import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 
 const Header = () => (
-  <header>
-    <div className="page-header min-vh-85">
-      <div>
-        <img className="position-absolute fixed-top ms-auto w-50 h-100 z-index-0 d-none d-sm-none d-md-block border-radius-section border-top-end-radius-0 border-top-start-radius-0 border-bottom-end-radius-0" src="/assets/img/curved-images/curved6.jpg" alt="image" />
-      </div>
+  <header className="bg-gradient-dark">
+    <div className="page-header min-vh-75" style={{backgroundImage: "url('/assets/images/steve/20190821_205627008_iOS.jpg')"}}>
+      <span className="mask bg-gradient-dark opacity-7"></span>
       <div className="container">
-        <div className="row">
-          <div className="col-lg-7 d-flex">
-            <div className="card card-body blur text-md-start text-center px-sm-5 shadow-lg mt-sm-5 py-sm-5">
-              <h2 className="text-gradient text-primary mb-0">Testa Software</h2>
-              <h2 className="text-dark mb-4">Full Stack Development</h2>
-              <p className="lead text-dark pe-md-5 me-md-5">
-                Welcome to the personal and professional home of Steve Testa. 
-              </p>
-              <div className="buttons">
-                <Link to="/about"><button type="button" className="btn btn-rounded bg-gradient-primary mt-4">About Me</button></Link>
-                {/* <Link to="/contact"><button type="button" className="btn btn-rounded btn-outline-secondary mt-4 ms-2">Contact Me</button></Link> */}
-              </div>
+        <div className="row justify-content-center">
+          <div className="col-lg-8 text-center mx-auto my-auto">
+            <h1 className="text-white">Testa Software<span className="text-white" id="typed"></span></h1>
+            <div id="typed-strings">
             </div>
+            <p className="lead mb-4 text-white opacity-8">Welcome to the personal and professional home of Steve Testa.</p>
+            <Link to="/about"><button type="button" className="btn btn-rounded bg-gradient-primary mt-4">About Me</button></Link>
           </div>
         </div>
-      </div>  
+      </div>
+      <div className="position-absolute w-100 z-index-1 bottom-0">
+        <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g>
+            <use xlinkHref="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+            <use xlinkHref="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+            <use xlinkHref="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+            <use xlinkHref="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,1" />
+          </g>
+        </svg>
+      </div>
     </div>
   </header>
 )
