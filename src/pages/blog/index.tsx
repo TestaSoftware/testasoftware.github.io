@@ -34,7 +34,7 @@ const BlogPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark
   return (
     <DefaultLayout>
-      <Seo title="Blog" />
+      <Seo title="Steve's Blog" />
       <section className="pt-10">
         <div className="container">
           <div className="row">
