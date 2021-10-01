@@ -2,7 +2,7 @@ import * as React from "react"
 
 import DefaultLayout from "../layouts/default"
 import Seo from "../components/site/seo"
-import ContactForm from "../components/content/contact"
+import ContactForm from "../components/content/card-contact"
 
 const ServicesPage = () => (
   <DefaultLayout>
@@ -34,11 +34,14 @@ const ServicesPage = () => (
         </div>
         <div className="row">
           <ul>
-            <li>Web Development</li>
-            <li>Search Engine Optimization</li>
-            <li>Penetration Testing</li>
-            <li>Machine Learning</li>
+            <li>Web Development - Frontend, Backend, Database, AWS, Azure, SEO, Security and Penetration Testing</li>
+            <li>Mobile Development - Cross-Platform (iOS, Android), Xamarin and .NET Maui</li>
+            <li>Custom Applications - Desktop, Cross-Platform (Windows, Linux) </li>
+            <li>Machine Learning - Deep Learning, Tabular, Vision Systems, </li>
           </ul>
+        </div>
+        <div className="row">
+          
         </div>
       </div>
     </header>
