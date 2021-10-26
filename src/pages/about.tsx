@@ -130,13 +130,13 @@ const AboutPage = ({ data }) => {
       <section className="py-5">
         <div className="container-fluid">
           <div className="row">
-          <div className="col-lg-4 col-10 d-flex justify-content-center flex-column mx-auto text-lg-start text-center">
+            <div className="col-lg-4 col-10 d-flex justify-content-center flex-column mx-auto text-lg-start text-center">
               <h2 className="mb-0 mt-lg-0 mt-4 text-gradient text-primary">Personal</h2>
               <h2 className="mb-4"></h2>
               <p className="lead">Most of my life revolves around my beautiful family. I have an amazing wife and two incredible daughters. They are my everything. Don't be fooled when I'm complaining about towing a trailer with two toddlers behind me on a family bike ride. I wouldn't trade it for the world. When I do get a moment to myself (not something that happens often), I still end up coding as my main hobby. I'm always interested in learning something new. I've also started to enjoy learning exactly how bad at I am at chess. Hit me up if you want to play a game. 🙂</p>
             </div>
             <div className="col-lg-5 col-6 mx-lg-0 mx-auto px-lg-0 px-md-0 my-auto">
-              <img className="w-100 border-radius-lg shadow" src="/assets/images/aboutme/steve-med.jpg" />
+              <img className="w-100 border-radius-lg shadow" src="/assets/images/steve/family1.jpg" />
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ const AboutPage = ({ data }) => {
                       </g>
                   </svg>
                 </div>
-                <h5 className="mt-3 mb-1">Phone</h5>
+                <h5 className="mt-3 mb-1">Phone</h5>0
                 <p className="mb-0">+1(440) 305-0073</p>
               </div>
               <hr className="vertical dark" />
