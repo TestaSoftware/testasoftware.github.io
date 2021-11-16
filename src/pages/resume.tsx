@@ -113,7 +113,7 @@ const ResumePage = ({ data }) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-10 mx-auto shadow">
+            <div className="col-lg-10 mx-auto">
               <div className="row">
                 <div className="col-md-8">
                   <h3 className="text-gradient text-primary">Experience</h3>
@@ -126,7 +126,7 @@ const ResumePage = ({ data }) => {
                   {resume.skills.map(skill => (
                     <Skill skill={skill} />
                   ))}
-                  <h3 className="text-gradient text-primary">Volunteer</h3>
+                  <h3 className="text-gradient text-primary">Organizations</h3>
                   {resume.volunteer.map(volunteer => (
                     <Volunteer volunteer={volunteer} />
                   ))}

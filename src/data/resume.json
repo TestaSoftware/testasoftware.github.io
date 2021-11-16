@@ -26,11 +26,6 @@
           "network": "github",
           "username": "stesta",
           "url": "https://github.com/stesta"
-        },
-        {
-          "network": "kaggle",
-          "username": "steventesta",
-          "url": "https://kaggle.com/steventesta"
         }
       ]
     },
@@ -43,6 +38,8 @@
         "endDate": "PRESENT",
         "summary": "My role on this team is to develop end-to-end solutions for the business. Solutions are primarily built upon our social enterprise solutions. We develop not only the company intranet but also the extranet. This allows Hyland employees, resellers and customers to interact and communicate in new ways.",
         "highlights": [
+          "Designed, implemented and supported an enterprise class web application to facilitate the transfer of knowledge and encourage communication between employees, partners and customers.",
+          "Access to support issues, manage sales opportunities and provide online licensing of software applications",
           "Created a new company intranet and extranet that allowed for increased communication and shared insights between our employees, reseller channels and customer base.",
           "Built many end-to-end custom solutions on top of our intranet and extranet to facilitate business processes.",
           "Aided in implementing and adhering to an agile software methodology",
@@ -65,12 +62,10 @@
         "website": "https://www.micro-officesystems.com",
         "startDate": "JUL 2005",
         "endDate": "DEC 2009",
-        "summary": "Micro-Office Systems is a custom solutions business with a focus entirely on the healthcare vertical. While working for the company, I had the opportunity to develop and support solution end to end.",
+        "summary": "While at Micro-Office Systems I worked as a mid-level developer in the healthcare space. I worked on a wide range of software products including HL7 systems integrations, communications utilities, custom back-office Scantron OMR applications and ANSI 835/837 billing utilities. I assumed multiple responsibilities as a both a developer and as a technical support contact. Software was developed using C#/.NET, Perl and C++ across several different platforms include Microsoft Windows, Linux, and SCO Unix. Other responsibilities included document composition and internal product testing.",
         "highlights": [
-          "Software development using C#, .Net (1.1, 2.0, 3.5), perl, c++ and others",
-          "Developed a wide range of products not limited to HL7 integrations, perl communications utilities, custom Scantron Optical Mark Reader utilities, and ANSI 835/837 billing utilities.",
-          "Software development for multiple operating systems including several versions of Windows, SCO Unix, and Linux",
-          "Other responsibilities included: primary support contact, documentation composition, and internal product testing"
+          "Tech Stack: C#, .Net (1.1, 2.0, 3.5), perl, c++",
+          "OS: Windows, SCO Unix, and Linux"
         ]
       },
       {
@@ -79,12 +74,9 @@
         "website": "",
         "startDate": "JAN 2005",
         "endDate": "JUN 2005",
-        "summary": "I worked in this role while in school. I was employed by my former professor. My time was primarily spent developing websites. After school, I continued to occasionally take on freelance work for the company.",
+        "summary": "While in school I worked at a consultant for Sky Internet Solutions. My focus was on both back-end and front-end web site development using C#/.NET, HTML, CSS, and JavaScript. ",
         "highlights": [
-          "Web page design using HTML, XHTML and CSS",
-          "Adhered to HTML and XHTML Strict W3C standards.",
-          "Development of dynamic content web pages using ASP.Net and C#",
-          "Use of Microsoft Visual Studio development environments"
+          "Tech Stack: ASP.Net, C#, HTML, XHTML and CSS"
         ]
       }
     ],

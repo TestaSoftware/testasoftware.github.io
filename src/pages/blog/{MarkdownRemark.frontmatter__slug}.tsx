@@ -5,6 +5,7 @@ import { Disqus } from "gatsby-plugin-disqus"
 import DefaultLayout from "../../layouts/default"
 import PostHeader from "../../components/blog/postheader"
 import gatsbyConfig from "../../../gatsby-config"
+import Seo from "../../components/site/seo"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
@@ -16,6 +17,7 @@ export default function Template({ data }) {
   }
   return (
     <DefaultLayout>
+      <Seo title={frontmatter.title} />
       <PostHeader frontmatter={frontmatter} />
       <section className="py-5">
         <div className="container">
