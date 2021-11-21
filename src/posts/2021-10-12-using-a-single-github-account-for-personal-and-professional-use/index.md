@@ -13,10 +13,10 @@ Using a single account for personal and professional purposes can make life a lo
 Organizations
 -------------
 One of the most important things you can do for yourself or your company is to make sure you're leveraging [GitHub Organizations][2]. Organizations provide a boundary for companies and organizations to facilitate collaboration while controlling access and security across many different repositories. Security and access permissions can be granted via roles under the organization.
+ 
+- create a new organization  
 
-TODO:  
-To create a new organization
-
+### Organization Visibility  
 As an individual, we can choose how we want to publicize the organizations we belong to. Navigate to the `People` tab of your organization, find your user (you can search for yourself if necessary), and click on your user. The page you land on will have an option regarding membership visibility. You may select public or private. Public makes your membership in this group visible to everyone and the organization will be displayed on your public profile. Private will mean that your membership is only visible to other members of the organization.  
 
 ![membership visiblity](membership-visibility.png)
@@ -32,25 +32,76 @@ git config user.email "steve@testasoftware.com"
 
 Setting an email on a specific repository will only affect your copy of the repository. After an email has been set then next time a `git commit` is issued it will use the more specific repository email over your globally set information. 
 
+Another trick to make sure your contributions are recognized is to add additional emails to your profile in GitHub. Any additional emails you add will need to be confirmed, but once that is done all commits with that email will be recognized as one of your contributions. Adding an email to your profile can be done via GitHub Settings and choosing the Email tab in the left-hand navigation. On that page, an "Add email address" input can be found.  
 
-Another trick to make sure your contributions are recognized is to add additional emails to your profile in Git. Any additional emails you add will need to be confirmed, but once that is done all commits with that email will be recognized as one of your contributions.
+![add email screenshot](add-email.png)
 
-- adding an email address to your GitHub account
+ It is a good idea to keep your personal email address as your primary email. Any work or other emails associated with contributions can be added as secondary email addresses. Additional preferences can be specified including the decision to receive notifications only on the primary email address.  
 
 SSH and GPG Keys
 -----------------
-Another nicety of using a single GitHub account is that you can use and manage multiple ssh keys. Multiple SSH keys can be generated, added, and removed if you no longer need them. 
+Another nicety of using a single GitHub account is that you can use and manage multiple SSH and GPG keys. Multiple keys can always be generated, added, and removed if you no longer need them. 
 
-- managing ssh keys
+While https is a perfectly secure option SSH keys can provide some extra comfort due to their larger key length and the private key being a piece of information that does not get shuffled around over the wire. 
+
+- creating a keyset 
+- algorithms
+- public vs private key
+- adding the SSH key to GitHub
+
+
+### GPG Keys 
+
+- creating the GPG keyset 
 - gpg signatures
   - kleopatra
-  - signing commits
+- adding the GPG key to GitHub
 
-Access Tokens
--------------
-- personal access tokens
-- GitHub token
-- bot accounts
+### Signing a Commit 
+
+Now that GitHub has a copy of your public GPG key, it can verify any commits signed with your private GPG key. Once the keyset exists, signing a commit becomes a relatively simple matter. One extra flag on the `git commit` command will do the trick.  
+
+```bash
+# creates a signed commit
+git commit -S -m "your commit message"
+```
+
+If you have more than one GPG key, however, Git needs to know which key to use. You can find additional documentation about this in the GitHub documentation for [Telling Git about your signing key][9]. Ultimately, once you figure out your key id, it can be added directly to your git global config.  
+
+```bash
+# list your gpg keys
+gpg --list-secret-keys --keyid-format=long
+
+# add the desired key to your git config
+git config --global user.signingkey your-long-form-keyid-here
+```
+
+An X.509 key may also be used to sign commits. Please reference the above documentation for more information.  
+
+Signing commits has the effect of marking that commit as "verified". This adds an additional layer of assurance and security as it asserts the commits were made by the individual listed. Repositories and Organizations can also be configured with additional security checks around verified commits.     
+
+Personal Access Tokens
+----------------------
+
+When using GitHub with the command line or via the API, a personal access token (PATs) can be used in place of a password. 
+
+- creating personal access tokens
+- defining token permissions and expiration
+- adding the PAT to the respository secrets
+
+### Leveraging Bot Accounts
+
+Part of the catch when using a personal access token is that permissions are defined by desired functionality and are not repository specific. Meaning, a personal access token that is granted read/write permissions would apply to all repositories and resources the owner of that token can access. This can present some problems when we're working with resources that aren't owned personally.  
+
+A bot account can be a useful compromise and is a legitimate use-case in the [GitHub Terms of Service][10]. GitHub defines a bot account (which they refer to as a "machine account") like this in their terms:  
+
+> A machine account is an Account set up by an individual human who accepts the Terms on behalf of the Account, provides a valid email address, and is responsible for its actions. A machine account is used exclusively for performing automated tasks. Multiple users may direct the actions of a machine account, but the owner of the Account is ultimately responsible for the machine's actions. You may maintain no more than one free machine account in addition to your free User Account.
+
+A bot account can be created which has access to the desired resources. A PAT can be created on that bot account and used like normal. This ensures that any shared code (such as a GitHub action) cannot be used in a harmful way against unintended resources.  
+
+### GitHub Token
+
+There is a special access token named the `GITHUB_TOKEN`. When a workflow kicks off, GitHub will automatically create this token. The `GITHUB_TOKEN` can be used as a means of authentication inside of the workflow. The permissions are limited to the repository that contains the workflow, but this can be a useful and convenient alternative to creating PATs specifically for one workflow. See [Automatic token authentication][11] for more details.   
 
 Notifications
 -------------
@@ -69,7 +120,7 @@ Leaving a Company
   - if you own the org and someone leaves you can also remove them manually 
 - open an issue or pr to keep contributions in your contributions graph
 
-**References**: [lecoursen in GitHub Community][1] 
+**Reference**: the main outline for this post was taken from this forum post: [lecoursen in GitHub Community][1] 
 
 [1]: https://github.community/t/using-one-account-for-all-your-projects/10197 
 [2]: https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
@@ -79,3 +130,6 @@ Leaving a Company
 [6]: https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#choosing-the-notification-delivery-method-for-organizations-you-belong-to 
 [7]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/best-practices-for-leaving-your-company 
 [8]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile#commits
+[9]: https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
+[10]: https://docs.github.com/en/github/site-policy/github-terms-of-service 
+[11]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
