@@ -14,7 +14,7 @@ Organizations
 -------------
 One of the most important things you can do for yourself or your company is to make sure you're leveraging [GitHub Organizations][2]. Organizations provide a boundary for companies and organizations to facilitate collaboration while controlling access and security across many different repositories. Security and access permissions can be granted via roles under the organization.
  
-- create a new organization  
+Creating a new organization is straightforward. On the "Your Organizations" page there is a button for "New Organization". You will need to pick a plan. Free plans are available. Choosing a paid plan will get you things like more automation minutes and extra features like pages, wikis, and insights for private repositories. For open source repositories most features are already available on the free plan. Billing is per user in the organization. From there you will need to enter a little bit of information such as organization name and contact email. Once that form is completed you will be the proud owner of a brand new organization! 
 
 ### Organization Visibility  
 As an individual, we can choose how we want to publicize the organizations we belong to. Navigate to the `People` tab of your organization, find your user (you can search for yourself if necessary), and click on your user. The page you land on will have an option regarding membership visibility. You may select public or private. Public makes your membership in this group visible to everyone and the organization will be displayed on your public profile. Private will mean that your membership is only visible to other members of the organization.  
@@ -44,11 +44,23 @@ Another nicety of using a single GitHub account is that you can use and manage m
 
 While https is a perfectly secure option SSH keys can provide some extra comfort due to their larger key length and the private key being a piece of information that does not get shuffled around over the wire. 
 
-- creating a keyset 
-- algorithms
-- public vs private key
-- adding the SSH key to GitHub
+To create a new SSH key you can use the following command. This command will generate your SSH key using the `Ed25519` algorithm. It was introduced in OpenSSH 6.5 and is compatible with GitHub. `Ed25519` is a preferred algorithm, but `RSA` can also be used assuming the key size is least 4096-bit length. Compared to `Ed25519`, `RSA` is slower and can be unsafe if the key is smaller than 2048-bit length. Additionally, `Ed25519` has the added benefit of being extremely compact weighing in at only 68 characters.
 
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+After you run the command you will be prompted to enter both the location (**it is recommended to just use the default directory**) to save key and an optional passphrase. What will actually be generated is an SSH key pair. Included in that pair is both a public key and private key. A public key can be shared freely and will not compromise your security or identity. A private key, however, needs to be kept secret. The optional passphrase mentioned earlier is an extra bit of encryption around the private key keeping it that much safer. The public key can be identified by the `.pub` extension.  
+
+![public key](public-key-example.png)
+
+GitHub needs to know about your SSH key. To add your public key to GitHub go to your GitHub Settings and then SSH and GPG Key tab. You will find an button for "New Key". Enter a title so you can easily recognize the key that was generated and the Key will be the contents of your public key file. 
+
+![github new ssh](github-new-ssh.png)
+
+You can now clone a repo use the SSH link (or update your remotes on existing repositories). You can grab the SSH specific repository link via the clone dialog on GitHub. Git will recognize the default SSH directory and will automatically use your created SSH key to secure the communication. 
+
+![github clone dialog](github-clone-dialog.png)
 
 ### GPG Keys 
 
@@ -62,7 +74,7 @@ While https is a perfectly secure option SSH keys can provide some extra comfort
 Now that GitHub has a copy of your public GPG key, it can verify any commits signed with your private GPG key. Once the keyset exists, signing a commit becomes a relatively simple matter. One extra flag on the `git commit` command will do the trick.  
 
 ```bash
-# creates a signed commit
+# use -S to create a signed commit
 git commit -S -m "your commit message"
 ```
 
