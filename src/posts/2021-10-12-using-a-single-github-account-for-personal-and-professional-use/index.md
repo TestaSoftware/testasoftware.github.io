@@ -38,8 +38,8 @@ Another trick to make sure your contributions are recognized is to add additiona
 
  It is a good idea to keep your personal email address as your primary email. Any work or other emails associated with contributions can be added as secondary email addresses. Additional preferences can be specified including the decision to receive notifications only on the primary email address.  
 
-SSH and GPG Keys
------------------
+SSH Keys
+--------
 Another nicety of using a single GitHub account is that you can use and manage multiple SSH and GPG keys. Multiple keys can always be generated, added, and removed if you no longer need them. 
 
 While https is a perfectly secure option SSH keys can provide some extra comfort due to their larger key length and the private key being a piece of information that does not get shuffled around over the wire. 
@@ -61,36 +61,6 @@ GitHub needs to know about your SSH key. To add your public key to GitHub go to 
 You can now clone a repo use the SSH link (or update your remotes on existing repositories). You can grab the SSH specific repository link via the clone dialog on GitHub. Git will recognize the default SSH directory and will automatically use your created SSH key to secure the communication. 
 
 ![github clone dialog](github-clone-dialog.png)
-
-### GPG Keys 
-
-- creating the GPG keyset 
-- gpg signatures
-  - kleopatra
-- adding the GPG key to GitHub
-
-### Signing a Commit 
-
-Now that GitHub has a copy of your public GPG key, it can verify any commits signed with your private GPG key. Once the keyset exists, signing a commit becomes a relatively simple matter. One extra flag on the `git commit` command will do the trick.  
-
-```bash
-# use -S to create a signed commit
-git commit -S -m "your commit message"
-```
-
-If you have more than one GPG key, however, Git needs to know which key to use. You can find additional documentation about this in the GitHub documentation for [Telling Git about your signing key][9]. Ultimately, once you figure out your key id, it can be added directly to your git global config.  
-
-```bash
-# list your gpg keys
-gpg --list-secret-keys --keyid-format=long
-
-# add the desired key to your git config
-git config --global user.signingkey your-long-form-keyid-here
-```
-
-An X.509 key may also be used to sign commits. Please reference the above documentation for more information.  
-
-Signing commits has the effect of marking that commit as "verified". This adds an additional layer of assurance and security as it asserts the commits were made by the individual listed. Repositories and Organizations can also be configured with additional security checks around verified commits.     
 
 Personal Access Tokens
 ----------------------
