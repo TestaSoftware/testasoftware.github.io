@@ -12,9 +12,9 @@ Using a single account for personal and professional purposes can make life a lo
 
 Organizations
 -------------
-One of the most important things you can do for yourself or your company is to make sure you're leveraging [GitHub Organizations][2]. Organizations provide a boundary for companies and organizations to facilitate collaboration while controlling access and security across many different repositories. Security and access permissions can be granted via roles under the organization.
+One of the most important things you can do for yourself or your company is to make sure you're leveraging [GitHub Organizations][2]. Organizations provide a boundary that facilitates collaboration while controlling access and security across many different repositories. Security and access permissions can be granted via roles under the organization.
  
-Creating a new organization is straightforward. On the "Your Organizations" page there is a button for "New Organization". You will need to pick a plan. Free plans are available. Choosing a paid plan will get you things like more automation minutes and extra features like pages, wikis, and insights for private repositories. For open source repositories most features are already available on the free plan. Billing is per user in the organization. From there you will need to enter a little bit of information such as organization name and contact email. Once that form is completed you will be the proud owner of a brand new organization! 
+Creating a new organization is straightforward. On the `Your Organizations` page there is a button for `New Organization`. You will need to pick a plan. Free plans are available. Choosing a paid plan will get you things like more automation minutes and extra features like pages, wikis, and insights for private repositories. For open source repositories most features are already available on the free plan. Billing is per user in the organization. From there you will need to enter a little bit of information such as organization name and contact email. Once that form is completed you will be the proud owner of a brand new organization! 
 
 ### Organization Visibility  
 As an individual, we can choose how we want to publicize the organizations we belong to. Navigate to the `People` tab of your organization, find your user (you can search for yourself if necessary), and click on your user. The page you land on will have an option regarding membership visibility. You may select public or private. Public makes your membership in this group visible to everyone and the organization will be displayed on your public profile. Private will mean that your membership is only visible to other members of the organization.  
@@ -91,16 +91,19 @@ Notifications
 
 Leaving a Company
 -----------------
-- User Account
-    - un-verify your company email address (delete the email address) and then re-add it without verifying to keep associated commits linked 
-    - make sure your primary is your personal email
-    - make sure your primary email is verified 
-    - if your GitHub username has references to your old company/org you should change your GitHub username as well 
-- Leaving Orgs
-  - transfer ownership if you're the sole owner
-  - remove yourself
-  - if you own the org and someone leaves you can also remove them manually 
-- open an issue or pr to keep contributions in your contributions graph
+
+When leaving a company there are a few important steps to take with your GitHub account. 
+
+1. **Update your primary email**  
+   If it isn't already, make sure that your primary email is your personal email address. If you need to switch, also check that email address is verified.  
+2. **Un-verify your company email address**   
+   You can delete your company email address and then re-add it (without verifying). This allows you to keep any commits associated with that email address linked and maintains credit for any contributions made.  
+3. **Update your GitHub username**  
+   If your user name references your old company/organization, you should change your username. 
+4. **Transfer organization ownership**  
+   If you are the sole owner of an organization that is no longer your responsibility, you should transfer ownership of that organization.
+5. **Remove yourself from organizations**  
+   When there are multiple owners or you are just an organization member, you can simply remove yourself from the organization. As a company with a separated employee, organization owners can also remove any members no longer associated with the organization.  
 
 **Reference**: the main outline for this post was taken from this forum post: [lecoursen in GitHub Community][1] 
 
