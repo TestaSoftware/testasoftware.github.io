@@ -1,8 +1,8 @@
 ---
 title: Using a Single GitHub Account for Personal and Professional Purposes
-slug: 2021-10-12-using-a-single-github-account-for-personal-and-professional-use
+slug: 2021-12-12-using-a-single-github-account-for-personal-and-professional-use
 image: /assets/images/blog/github-profile.png
-date: 2021-10-12
+date: 2021-12-12
 categories: ["devops", "git"]
 ---
 
@@ -65,11 +65,11 @@ You can now clone a repo use the SSH link (or update your remotes on existing re
 Personal Access Tokens
 ----------------------
 
-When using GitHub with the command line or via the API, a personal access token (PATs) can be used in place of a password. 
+A personal access token (PAT) is basically a password. PATs can be used either in the GitHub command line or against the API and provide authentication into secured resources. [Token are easy to create][12]. Additionally, they can be assigned specific permissions and given an expiration date for security purposes. Personal Access Tokens are the preferred way to handle authentication. 
 
-- creating personal access tokens
-- defining token permissions and expiration
-- adding the PAT to the respository secrets
+#### GitHub Token
+
+There is a special access token named the `GITHUB_TOKEN`. When a workflow kicks off, GitHub will automatically create this token. The `GITHUB_TOKEN` can be used as a means of authentication inside of the workflow. The permissions specific to the repository that contains the workflow, but this can be a useful and convenient alternative to creating PATs specifically for one workflow. See [Automatic token authentication][11] for more details.  
 
 ### Leveraging Bot Accounts
 
@@ -81,13 +81,17 @@ A bot account can be a useful compromise and is a legitimate use-case in the [Gi
 
 A bot account can be created which has access to the desired resources. A PAT can be created on that bot account and used like normal. This ensures that any shared code (such as a GitHub action) cannot be used in a harmful way against unintended resources.  
 
-### GitHub Token
 
-There is a special access token named the `GITHUB_TOKEN`. When a workflow kicks off, GitHub will automatically create this token. The `GITHUB_TOKEN` can be used as a means of authentication inside of the workflow. The permissions are limited to the repository that contains the workflow, but this can be a useful and convenient alternative to creating PATs specifically for one workflow. See [Automatic token authentication][11] for more details.   
 
 Notifications
 -------------
-- notifications
+
+The first step is to make sure all email addresses you wish to use are properly set up in the `Settings -> Emails` tab. (This was also mentioned above in the "Setting Your Email" section). It is best practice to keep your personal email address as the primary email. Any work or organization emails should be set as secondary. 
+
+As you start to belong to more organizations, managing your notifications will be important to your sanity. Notification preferences can be found in the `Settings -> Notifications` tab. There are delivery options for the various notification types. For example, if notifications are starting to flood your inbox you can uncheck "Email" in the "Watching" section and instead decide to only receive those notifications on "Web and Mobile".   
+
+Also, don't miss `Custom Routing` all the way at the bottom of the notifications screen. This setting allows you to send notifications, on a per organization basis, to a specific **verified** email address.
+
 
 Leaving a Company
 -----------------
@@ -118,3 +122,4 @@ When leaving a company there are a few important steps to take with your GitHub 
 [9]: https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
 [10]: https://docs.github.com/en/github/site-policy/github-terms-of-service 
 [11]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+[12]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
