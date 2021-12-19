@@ -1,6 +1,6 @@
 ---
 title: Vim Survival Guide
-slug: 2017-07-27-vim-survival-guide
+slug: 2021-08-18-vim-survival-guide
 image: /assets/images/blog/vim-tmux.png
 date: 2021-08-18
 categories: ["development", "tools"]
