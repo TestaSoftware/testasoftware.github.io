@@ -32,14 +32,17 @@ const Footer = ({ }) => (
           </p>
         </div>
         <div className="col-lg-3 text-lg-end text-center">
-          <a href="https://github.com/stesta" className="text-secondary me-xl-4 me-4">
+          <a rel="me" href="https://github.com/stesta" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-github text-lg"></span>
           </a>
-          <a href="https://twitter.com/steven_testa" className="text-secondary me-xl-4 me-4">
+          <a rel="me" href="https://twitter.com/steven_testa" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-twitter text-lg"></span>
           </a>
-          <a href="https://www.linkedin.com/in/stevendtesta/" className="text-secondary me-xl-4 me-4">
+          <a rel="me" href="https://www.linkedin.com/in/stevendtesta/" className="text-secondary me-xl-4 me-4">
             <span className="fab fa-linkedin text-lg"></span>
+          </a>
+          <a rel="me" href="https://hachyderm.io/@steve_testa">
+            <span className="fab fa-mastodon text-lg"></span>
           </a>
         </div>
       </div>
