@@ -1,0 +1,128 @@
+export const frontmatter = {
+    title: 'Vim Survival - REDUX',
+    description: 'An exploration of Neovim, the modern fork of Vim, and essential plugins and configurations to enhance your editing experience.',
+    thumbnail: '/assets/images/blog/github-profile.png',
+    date: new Date('2024-09-26'),
+    categories: ['devops', 'git']
+}
+
+# Vim Survival - REDUX
+
+- neovim vs vim
+  - neovim is a fork
+  - native lsp 
+  - treesitter  
+  - lua  
+  - vim under dictatorial control  
+  - remote servers will probably have vim already 
+- plugin manager lazy.nvim
+- plugins
+  - fd
+  - lazygit
+  - luarocks
+  - ripgrep 
+  - treesitter 
+  - telescope  
+  - mason  
+- platform
+  - lazyvim
+  - nvchad
+  - astro
+  - lunar
+  - kickstart
+- compiling neovim 
+- windows winget
+
+
+### Exploring Neovim: The Modern Vim Fork
+
+#### Neovim vs. Vim: A Modern Take on a Classic Editor
+
+Neovim is a fork of Vim, created to address some of the limitations and challenges faced by Vim users. While Vim is a
+powerful and widely-used text editor, it has been under the control of a single maintainer, which has led to slower
+development and fewer community contributions⁶. Neovim, on the other hand, aims to simplify maintenance, encourage
+contributions, and introduce modern features without compromising the core Vim experience⁶.
+
+#### Native LSP Support
+
+One of the standout features of Neovim is its native support for the Language Server Protocol (LSP). This allows Neovim
+to provide IDE-like features such as code completion, go-to definition, and diagnostics directly within the editor²¹.
+This built-in LSP support makes Neovim a powerful tool for developers who need advanced language features without
+relying on external plugins.
+
+#### Treesitter Integration
+
+Neovim integrates with Treesitter, a parser generator tool that provides advanced syntax highlighting, code navigation,
+and refactoring capabilities¹⁵. Treesitter allows Neovim to offer more accurate and performant code analysis, making it
+a great choice for developers working with complex codebases¹⁷.
+
+#### Lua for Configuration
+
+Unlike Vim, which primarily uses Vimscript for configuration, Neovim supports Lua, a lightweight and fast scripting
+language¹². Lua allows for more flexible and powerful configurations, enabling users to create custom workflows and
+extend Neovim's functionality with ease¹³.
+
+#### Vim's Dictatorial Control
+
+Vim has been under the control of a single maintainer, which has led to a more dictatorial development process⁶. This
+has sometimes slowed down the adoption of new features and improvements. Neovim's approach, with a more open and
+community-driven development model, aims to foster innovation and collaboration.
+
+#### Remote Servers and Vim
+
+It's worth noting that many remote servers will already have Vim installed by default. This makes Vim a convenient
+choice for quick edits on remote systems. However, for local development, Neovim's modern features and enhancements
+make it a compelling alternative.
+
+### Plugin Manager: Lazy.nvim
+
+Neovim users can take advantage of Lazy.nvim, a plugin manager designed to simplify the installation and management of
+plugins. Lazy.nvim allows users to easily add, update, and remove plugins, making it easier to customize Neovim to fit
+their needs.
+
+### Essential Plugins
+
+Here are some essential plugins that can enhance your Neovim experience:
+
+- **fd**: A simple, fast, and user-friendly alternative to `find`.
+- **lazygit**: A simple terminal UI for Git commands.
+- **luarocks**: A package manager for Lua modules.
+- **ripgrep**: A line-oriented search tool that recursively searches directories for a regex pattern.
+- **treesitter**: Provides advanced syntax highlighting and code navigation.
+- **telescope**: A highly extendable fuzzy finder over lists.
+- **mason**: A plugin to manage external editor tooling such as LSP servers, DAP servers, linters, and formatters.
+
+### Neovim Platforms
+
+Several platforms and configurations can help you get started with Neovim:
+
+- **LazyVim**: A starter template for Neovim with a focus on simplicity and ease of use.
+- **NvChad**: A Neovim configuration framework with a focus on modularity and performance.
+- **AstroNvim**: A community-driven Neovim configuration with a focus on extensibility and ease of use.
+- **LunarVim**: A Neovim configuration that aims to provide a complete IDE-like experience.
+- **Kickstart.nvim**: A minimal Neovim configuration to help you get started quickly.
+
+### Compiling Neovim
+
+Compiling Neovim from source can give you the latest features and improvements. The process involves cloning the Neovim
+repository, installing dependencies, and running the build commands. Detailed instructions can be found in the Neovim
+documentation⁶.
+
+### Installing Neovim on Windows with Winget
+
+For Windows users, Neovim can be easily installed using Winget, the Windows Package Manager. Simply run the following
+command in your terminal:
+
+```sh
+winget install Neovim.Neovim
+```
+
+This will download and install the latest version of Neovim, making it easy to get started on Windows.
+
+### Conclusion
+
+Neovim offers a modern and powerful alternative to Vim, with features like native LSP support, Treesitter integration,
+and Lua configuration. Its community-driven development model and extensive plugin ecosystem make it a versatile tool
+for developers. Whether you're a seasoned Vim user or new to modal editors, Neovim is worth exploring for its enhanced
+capabilities and modern approach.
+
