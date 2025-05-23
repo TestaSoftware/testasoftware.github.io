@@ -1,49 +1,36 @@
-interface FrontMatter {
+import glob from 'fast-glob'
+
+interface Article {
   title: string
   description: string
-  image: string
-  date: Date,
-  tags: string[]
+  author: string
+  date: string
 }
 
-interface ArticleWithSlug  {
-  title: string
-  description: string
-  image: string
-  date: Date,
-  tags: string[]
+export interface ArticleWithSlug extends Article {
   slug: string
 }
 
-export type { FrontMatter, ArticleWithSlug }
+async function importArticle(
+  articleFilename: string,
+): Promise<ArticleWithSlug> {
+  let { article } = (await import(`../app/articles/${articleFilename}`)) as {
+    default: React.ComponentType
+    article: Article
+  }
 
-export function getArticleMetadata(pathname: string) : ArticleWithSlug {
-  const directory = pathname.replace('/articles', '')
-  const allArticles = getArticlesMetadata();
-  
-  return allArticles.filter(a => a.slug.includes(directory))[0];
+  return {
+    slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
+    ...article,
+  }
 }
 
-export function getArticlesMetadata() : ArticleWithSlug[] {
-  const modules = import.meta.glob('../pages/articles/\\(posts\\)/*/*.mdx', { eager: true })
+export async function getAllArticles() {
+  let articleFilenames = await glob('*/page.mdx', {
+    cwd: './src/app/articles',
+  })
 
-  return Object.keys(modules).map((key) => {
-    const mod : any = modules[key];
-    return {
-      ...mod.frontmatter,
-      slug: key.replace('../pages', '').replace('/(posts)', '').replace('/index.mdx', '')
-    }
-  }).sort((a, b) => b.date - a.date)
-}
+  let articles = await Promise.all(articleFilenames.map(importArticle))
 
-export function getArchivedArticlesMetadata() : ArticleWithSlug[] {
-  const modules = import.meta.glob('../pages/articles/\\(posts\\)/archive/**/*.mdx', { eager: true })
-
-  return Object.keys(modules).map((key) => {
-    const mod : any = modules[key];
-    return {
-      ...mod.frontmatter,
-      slug: key.replace('../pages', '').replace('/(posts)', '').replace('/index.mdx', '')
-    }
-  }).sort((a, b) => b.date - a.date)
+  return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }

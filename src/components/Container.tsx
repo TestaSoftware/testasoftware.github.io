@@ -1,39 +1,39 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import clsx from 'clsx'
 
-export const ContainerOuter = forwardRef(function ContainerOuter(
-  props: { children: React.ReactNode } & React.ComponentPropsWithoutRef<'div'>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  return(
-    <div ref={ref} className={clsx('sm:px-8', props.className)} {...props}>
-      <div className="mx-auto w-full max-w-7xl lg:px-8">{props.children}</div>
+export const ContainerOuter = forwardRef<
+  React.ElementRef<'div'>,
+  React.ComponentPropsWithoutRef<'div'>
+>(function OuterContainer({ className, children, ...props }, ref) {
+  return (
+    <div ref={ref} className={clsx('sm:px-8', className)} {...props}>
+      <div className="mx-auto w-full max-w-7xl lg:px-8">{children}</div>
     </div>
   )
-});
+})
 
-export const ContainerInner = forwardRef(function ContainerInner(
-  props: {children: React.ReactNode} & React.ComponentPropsWithoutRef<'div'>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+export const ContainerInner = forwardRef<
+  React.ElementRef<'div'>,
+  React.ComponentPropsWithoutRef<'div'>
+>(function InnerContainer({ className, children, ...props }, ref) {
   return (
     <div
       ref={ref}
-      className={clsx('relative px-4 sm:px-8 lg:px-12', props.className)}
+      className={clsx('relative px-4 sm:px-8 lg:px-12', className)}
       {...props}
     >
-      <div className="mx-auto max-w-2xl lg:max-w-5xl">{props.children}</div>
+      <div className="mx-auto max-w-2xl lg:max-w-5xl">{children}</div>
     </div>
   )
-});
+})
 
-export const Container = forwardRef(function Container(
-  props: {children: React.ReactNode} & React.ComponentPropsWithoutRef<typeof ContainerOuter>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+export const Container = forwardRef<
+  React.ElementRef<typeof ContainerOuter>,
+  React.ComponentPropsWithoutRef<typeof ContainerOuter>
+>(function Container({ children, ...props }, ref) {
   return (
     <ContainerOuter ref={ref} {...props}>
-      <ContainerInner>{props.children}</ContainerInner>
+      <ContainerInner>{children}</ContainerInner>
     </ContainerOuter>
   )
-});
+})

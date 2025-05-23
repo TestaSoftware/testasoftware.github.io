@@ -1,15 +1,21 @@
-import { ArrowDownIcon, BriefcaseIcon } from "@heroicons/react/20/solid";
-import { Button } from "./ui/button";
+import Image, { type ImageProps } from 'next/image'
+import logoAirbnb from '@/images/logos/airbnb.svg'
+import logoFacebook from '@/images/logos/facebook.svg'
+import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoStarbucks from '@/images/logos/starbucks.svg'
+import { Button } from '@/components/Button'
+import { ArrowDownIcon, BriefcaseIcon } from './Icons'
+
 
 interface Role {
     company: string
     title: string
-    logo: string
+    logo: ImageProps['src']
     start: string | { label: string; dateTime: string }
     end: string | { label: string; dateTime: string }
-}
+  }
   
-function Role({ role }: { role: Role }) {
+  function Role({ role }: { role: Role }) {
     let startLabel =
       typeof role.start === 'string' ? role.start : role.start.label
     let startDate =
@@ -20,8 +26,8 @@ function Role({ role }: { role: Role }) {
   
     return (
       <li className="flex gap-4">
-        <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center shadow-md shadow-zinc-800/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800">
-          <img src={role.logo} alt="" className="h-7 w-7" />
+        <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+          <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
         </div>
         <dl className="flex flex-auto flex-wrap gap-x-2">
           <dt className="sr-only">Company</dt>
@@ -44,14 +50,14 @@ function Role({ role }: { role: Role }) {
         </dl>
       </li>
     )
-}
-
-export function ResumeSummary() {
+  }
+  
+  export function Resume() {
     let resume: Array<Role> = [
       {
-        company: 'Hyland Software',
-        title: 'Architect',
-        logo: "/images/logos/hyland_software_logo.jpg",
+        company: 'Planetaria',
+        title: 'CEO',
+        logo: logoPlanetaria,
         start: '2019',
         end: {
           label: 'Present',
@@ -59,23 +65,23 @@ export function ResumeSummary() {
         },
       },
       {
-        company: 'Hyland Software',
-        title: 'Senior Developer',
-        logo: "/images/logos/hyland_software_logo.jpg",
+        company: 'Airbnb',
+        title: 'Product Designer',
+        logo: logoAirbnb,
         start: '2014',
         end: '2019',
       },
       {
-        company: 'Micro-Office Systems',
-        title: 'Programmer / Technical Support Specialist ',
-        logo: "/images/logos/micro_office_systems_inc__logo.jpg",
+        company: 'Facebook',
+        title: 'iOS Software Engineer',
+        logo: logoFacebook,
         start: '2011',
         end: '2014',
       },
       {
-        company: 'Sky Internet Solutions',
-        title: 'Developer',
-        logo: "",
+        company: 'Starbucks',
+        title: 'Shift Supervisor',
+        logo: logoStarbucks,
         start: '2008',
         end: '2011',
       },
@@ -92,7 +98,7 @@ export function ResumeSummary() {
             <Role key={roleIndex} role={role} />
           ))}
         </ol>
-        <Button href="#" className="group mt-6 w-full">
+        <Button href="#" variant="secondary" className="group mt-6 w-full">
           Download CV
           <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
         </Button>
