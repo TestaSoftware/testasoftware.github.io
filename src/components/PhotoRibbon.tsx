@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import image1 from '@/images/photos/6G3A0387.jpg'
+import image1 from '@/images/photos/20231021_182212.webp'
 import image2 from '@/images/portrait.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/20210918_140020760_iOS.jpg'
+import image3 from '@/images/photos/6G3A0387.webp'
+import image4 from '@/images/photos/20210918_140020760_iOS.webp'
+import image5 from '@/images/photos/20240826_125802.webp'
 import clsx from 'clsx'
 
 export function Photos() {
