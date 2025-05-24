@@ -31,7 +31,7 @@ export function Footer() {
                 <NavLink href="/articles">Articles</NavLink>
                 <NavLink href="https://github.com/stesta">GitHub</NavLink>
               </div>
-              <p className="text-sm text-zinc-400 dark:text-zinc-500">
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">
                 &copy; {new Date().getFullYear()} Testa Software. All rights
                 reserved.
               </p>
