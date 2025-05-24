@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       'Testa Software',
   },
   description:
-    '',
+    "Welcome to Testa Software, my personal and professional digital home. I'm Steve, a software architect and developer based in Cleveland, Ohio. Im a full-stack programmer passionate about dotnet, web technologies, and accessibility.",
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
